@@ -6,12 +6,13 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        fetch("https://tamarflix.herokuapp.com/movies");
+        fetch("https://tamarflix.herokuapp.com/movies")
         .then((response) => response.json())
       .then((movies) => {
+
         const moviesFromApi = movies.map((movie) => {
             return {
-              id: movie_id,
+              id: movie.key,
               title: movie.Title,
               image: movie.ImagePath,
               description: movie.Description,
@@ -19,7 +20,6 @@ export const MainView = () => {
               director: movie.Director
             };
           });
-  
           setMovies(moviesFromApi);
         });
     }, []);
