@@ -8,9 +8,9 @@ export const MainView = () => {
     useEffect(() => {
         fetch("https://tamarflix.herokuapp.com/movies")
         .then((response) => response.json())
-      .then((movies) => {
+      .then((data) => {
 
-        const moviesFromApi = movies.map((movie) => {
+        const moviesFromApi = data.map((movie) => {
             return {
               id: movie.key,
               title: movie.Title,
