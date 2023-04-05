@@ -27298,7 +27298,7 @@ var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
     const [movies, setMovies] = (0, _react.useState)([]);
-    useEffect(()=>{
+    (0, _react.useEffect)(()=>{
         fetch("https://tamarflix.herokuapp.com/movies");
     }, []);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
