@@ -5,6 +5,10 @@ import { MovieView } from "../movie-view/movie-view";
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
 
+    useEffect(() => {
+        fetch("https://tamarflix.herokuapp.com/movies");
+      }, []);
+
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   if (selectedMovie) {

@@ -27298,20 +27298,23 @@ var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
     const [movies, setMovies] = (0, _react.useState)([]);
+    useEffect(()=>{
+        fetch("https://tamarflix.herokuapp.com/movies");
+    }, []);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 12,
+        lineNumber: 16,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 17,
+        lineNumber: 21,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27322,16 +27325,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 23,
+                lineNumber: 27,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 21,
+        lineNumber: 25,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "jzuc4/Y81KLA8pUTcmWNL/aPH2I=");
+_s(MainView, "llzgrUkvR/+OoCNfiqlA1H2LLFI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
