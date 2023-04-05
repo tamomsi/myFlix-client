@@ -7,6 +7,10 @@ export const MainView = () => {
 
     useEffect(() => {
         fetch("https://tamarflix.herokuapp.com/movies");
+        .then((response) => response.json())
+      .then((data) => {
+        console.log("movies from api:", data);
+      });
       }, []);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
