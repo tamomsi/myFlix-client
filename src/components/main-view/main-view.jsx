@@ -10,10 +10,14 @@ export const MainView = () => {
     const [token, setToken] = useState(null);
 
     useEffect(() => {
-        fetch("https://tamarflix.herokuapp.com/movies")
-        .then((response) => response.json())
-      .then((data) => {
-
+        if (!token) {
+            return;
+        }  
+        fetch("https://tamarflix.herokuapp.com/movies"), {
+            headers: { Authorization: `Bearer ${token}` }
+    })
+      .then((response) => response.json())
+      .then((movies) => {
         const moviesFromApi = data.map((movie) => {
             return {
               id: movie.key,
@@ -26,7 +30,7 @@ export const MainView = () => {
           });
           setMovies(moviesFromApi);
         });
-    }, []);
+    }, [token]);
 
     if (!user) {
         return (
@@ -77,6 +81,7 @@ export const MainView = () => {
               <button
                 onClick={() => {
                   setUser(null);
+                  setToken(null);
                 }}
               >
                 Logout
