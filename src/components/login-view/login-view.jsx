@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [username, setUsername] = useState("");
+    const [UserName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
@@ -9,8 +9,8 @@ export const LoginView = ({ onLoggedIn }) => {
       event.preventDefault();
   
       const data = {
-        access: username,
-        secret: password
+        UserName: UserName,
+        Password: password
       };
   
       fetch("https://tamarflix.herokuapp.com/login", {
@@ -19,9 +19,10 @@ export const LoginView = ({ onLoggedIn }) => {
             "Content-Type": "application/json"
           },
         body: JSON.stringify(data)
-    }).then((response) => response.json())
+    })
+    .then((response) => response.json())
     .then((data) => {
-      console.log("Login response: ", data);
+      console.log("Login response:", data);
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
@@ -33,6 +34,7 @@ export const LoginView = ({ onLoggedIn }) => {
     .catch((e) => {
       alert("Something went wrong");
     });
+}
   
     return (
       <form onSubmit={handleSubmit}>
@@ -40,9 +42,10 @@ export const LoginView = ({ onLoggedIn }) => {
           Username:
           <input 
           type="text" 
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={UserName}
+          onChange={(e) => setUserName(e.target.value)}
           required
+          minLength="5"
           />
         </label>
         <label>
@@ -58,4 +61,4 @@ export const LoginView = ({ onLoggedIn }) => {
         </button>
       </form>
     );
-  }};
+  };
