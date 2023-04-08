@@ -27323,36 +27323,76 @@ const MainView = ()=>{
         lineNumber: 31,
         columnNumber: 16
     }, undefined);
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movie: selectedMovie,
-        onBackClick: ()=>setSelectedMovie(null)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 36,
-        columnNumber: 7
-    }, undefined);
-    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "The list is empty!"
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 41,
-        columnNumber: 12
-    }, undefined);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                movie: movie,
-                onMovieClick: (newSelectedMovie)=>{
-                    setSelectedMovie(newSelectedMovie);
-                }
-            }, movie.id, false, {
+    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>{
+                    setUser(null);
+                },
+                children: "Logout"
+            }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 47,
+                lineNumber: 37,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(BookView, {
+                book: selectedBook,
+                onBackClick: ()=>setSelectedBook(null)
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 44,
                 columnNumber: 9
-            }, undefined))
-    }, void 0, false, {
+            }, undefined)
+        ]
+    }, void 0, true);
+    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>{
+                    setUser(null);
+                },
+                children: "Logout"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 55,
+                columnNumber: 15
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: "The list is empty!"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 62,
+                columnNumber: 15
+            }, undefined)
+        ]
+    }, void 0, true);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: ()=>{
+                    setUser(null);
+                },
+                children: "Logout"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 69,
+                columnNumber: 15
+            }, undefined),
+            movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                    movie: movie,
+                    onMovieClick: (newSelectedMovie)=>{
+                        setSelectedMovie(newSelectedMovie);
+                    }
+                }, movie.id, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 77,
+                    columnNumber: 17
+                }, undefined))
+        ]
+    }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 45,
-        columnNumber: 5
+        lineNumber: 68,
+        columnNumber: 13
     }, undefined);
 };
 _s(MainView, "AA2Lbd5vppiQn5Rpxq/geFPiCys=");
