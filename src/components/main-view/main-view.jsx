@@ -4,31 +4,31 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 
 export const MainView = () => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = useState(storedUser? storedUser : null);
+    const [token, setToken] = useState(storedToken? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null);
 
     useEffect(() => {
-        if (!token) {
-            return;
-        }  
+        if (!token) return;
         fetch("https://tamarflix.herokuapp.com/movies"), {
-            headers: { Authorization: `Bearer ${token}` }
-    })
-      .then((response) => response.json())
-      .then((movies) => {
-        const moviesFromApi = data.map((movie) => {
-            return {
-              id: movie.key,
-              title: movie.Title,
-              image: movie.ImagePath,
-              description: movie.Description,
-              genre: movie.Genre,
-              director: movie.Director
-            };
-          });
-          setMovies(moviesFromApi);
+            headers: { Authorization: `Bearer ${token}` },
+        }
+        .then((response) => response.json())
+        .then((movies) => {
+            const moviesFromApi = data.map((movie) => {
+                return {
+                  id: movie.key,
+                  title: movie.Title,
+                  image: movie.ImagePath,
+                  description: movie.Description,
+                  genre: movie.Genre,
+                  director: movie.Director
+                };
+              });
+          setMovies(movies);
         });
     }, [token]);
 
@@ -46,16 +46,11 @@ export const MainView = () => {
   if (selectedMovie) {
     return (
       <>
-      <button
-          onClick={() => {
-            setUser(null);
-          }}
-        >
-          Logout
-        </button>
-        <BookView
-          book={selectedBook}
-          onBackClick={() => setSelectedBook(null)}
+      <button onClick={() => { setUser(null); 
+        setToken(null); localStorage.clear(); }}>Logout</button>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
         />
       </>
     );
