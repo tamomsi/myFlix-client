@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [UserName, setUserName] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
@@ -9,7 +9,7 @@ export const LoginView = ({ onLoggedIn }) => {
       event.preventDefault();
   
       const data = {
-        access: UserName,
+        access: username,
         secret: password
       };
   
@@ -40,8 +40,8 @@ export const LoginView = ({ onLoggedIn }) => {
           Username:
           <input 
           type="text" 
-          value={UserName}
-          onChange={(e) => setUserName(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
           />
         </label>
