@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [username, setUsername] = useState("");
+    const [UserName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
@@ -9,16 +9,16 @@ export const LoginView = ({ onLoggedIn }) => {
       event.preventDefault();
   
       const data = {
-        access: username,
+        access: UserName,
         secret: password
       };
   
-      fetch("https://tamarflix.herokuapp.com/account/login.json", {
+      fetch("https://tamarflix.herokuapp.com/login", {
         method: "POST",
         body: JSON.stringify(data)
     }).then((response) => {
       if (response.ok) {
-        onLoggedIn(username);
+        onLoggedIn(UserName);
       } else {
         alert("Login failed");
       }
@@ -28,14 +28,20 @@ export const LoginView = ({ onLoggedIn }) => {
       <form onSubmit={handleSubmit}>
         <label>
           Username:
-          <input type="text" 
-                 value={username}
-                 onChange={(e) => setUsername(e.target.value)}
+          <input 
+          type="text" 
+          value={UserName}
+          onChange={(e) => setUserName(e.target.value)}
+          required
           />
         </label>
         <label>
           Password:
-          <input type="password" />
+          <input      
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required />
         </label>
         <button type="submit">
           Submit

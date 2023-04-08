@@ -28446,20 +28446,20 @@ var _react = require("react");
 var _s = $RefreshSig$();
 const LoginView = ({ onLoggedIn  })=>{
     _s();
-    const [username, setUsername] = (0, _react.useState)("");
+    const [UserName, setUserName] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
     const handleSubmit = (event)=>{
         // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
         const data = {
-            access: username,
+            access: UserName,
             secret: password
         };
-        fetch("https://tamarflix.herokuapp.com/account/login.json", {
+        fetch("https://tamarflix.herokuapp.com/login", {
             method: "POST",
             body: JSON.stringify(data)
         }).then((response)=>{
-            if (response.ok) onLoggedIn(username);
+            if (response.ok) onLoggedIn(UserName);
             else alert("Login failed");
         });
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -28470,8 +28470,9 @@ const LoginView = ({ onLoggedIn  })=>{
                         "Username:",
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                             type: "text",
-                            value: username,
-                            onChange: (e)=>setUsername(e.target.value)
+                            value: UserName,
+                            onChange: (e)=>setUserName(e.target.value),
+                            required: true
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
                             lineNumber: 31,
@@ -28487,16 +28488,19 @@ const LoginView = ({ onLoggedIn  })=>{
                     children: [
                         "Password:",
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                            type: "password"
+                            type: "password",
+                            value: password,
+                            onChange: (e)=>setPassword(e.target.value),
+                            required: true
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 38,
+                            lineNumber: 40,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 36,
+                    lineNumber: 38,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28504,7 +28508,7 @@ const LoginView = ({ onLoggedIn  })=>{
                     children: "Submit"
                 }, void 0, false, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 40,
+                    lineNumber: 46,
                     columnNumber: 9
                 }, undefined)
             ]
@@ -28515,7 +28519,7 @@ const LoginView = ({ onLoggedIn  })=>{
         }, undefined);
     };
 };
-_s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
+_s(LoginView, "Px/sp4CVqlygA9UNR8IowwxRPc4=");
 _c = LoginView;
 var _c;
 $RefreshReg$(_c, "LoginView");
