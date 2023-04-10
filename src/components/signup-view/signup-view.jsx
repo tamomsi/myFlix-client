@@ -9,6 +9,22 @@ export const SignupView = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+     // Perform validation checks before submitting the form
+     if (UserName.length < 5) {
+        alert("Username must be at least 5 characters long");
+        return;
+      }
+  
+      if (password.length < 8) {
+        alert("Password must be at least 8 characters long");
+        return;
+      }
+  
+      if (!/\S+@\S+\.\S+/.test(email)) {
+        alert("Invalid email address");
+        return;
+      }
+
     const data = {
       UserName: UserName,
       Password: password,
@@ -35,7 +51,7 @@ export const SignupView = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        UserName:
+        Username:
         <input
           type="text"
           value={UserName}
@@ -51,6 +67,7 @@ export const SignupView = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          minLength="8"
         />
       </label>
       <label>
