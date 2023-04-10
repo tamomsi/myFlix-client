@@ -28513,13 +28513,21 @@ var _react = require("react");
 var _s = $RefreshSig$();
 const LoginView = ({ onLoggedIn  })=>{
     _s();
-    const [UserName, setUserName] = (0, _react.useState)("");
+    const [userName, setUserName] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
+    const [formErrors, setFormErrors] = (0, _react.useState)({});
+    const validateForm = ()=>{
+        let errors = {};
+        if (!userName.trim()) errors.userName = "Username is required";
+        if (!password.trim()) errors.password = "Password is required";
+        setFormErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
     const handleSubmit = (event)=>{
-        // this prevents the default behavior of the form which is to reload the entire page
         event.preventDefault();
+        if (!validateForm()) return;
         const data = {
-            UserName: UserName,
+            UserName: userName,
             Password: password
         };
         fetch("https://tamarflix.herokuapp.com/login", {
@@ -28547,20 +28555,27 @@ const LoginView = ({ onLoggedIn  })=>{
                     "UserName:",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "text",
-                        value: UserName,
+                        value: userName,
                         onChange: (e)=>setUserName(e.target.value),
                         required: true,
                         minLength: "5"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 43,
-                        columnNumber: 11
+                        lineNumber: 62,
+                        columnNumber: 9
+                    }, undefined),
+                    formErrors.userName && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: formErrors.userName
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 69,
+                        columnNumber: 33
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 41,
-                columnNumber: 9
+                lineNumber: 60,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: [
@@ -28572,31 +28587,38 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 53,
-                        columnNumber: 11
+                        lineNumber: 73,
+                        columnNumber: 9
+                    }, undefined),
+                    formErrors.password && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: formErrors.password
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 79,
+                        columnNumber: 33
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 51,
-                columnNumber: 9
+                lineNumber: 71,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 type: "submit",
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 60,
-                columnNumber: 9
+                lineNumber: 81,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 40,
-        columnNumber: 7
+        lineNumber: 59,
+        columnNumber: 5
     }, undefined);
 };
-_s(LoginView, "Px/sp4CVqlygA9UNR8IowwxRPc4=");
+_s(LoginView, "cDfESSUV/cikh5SQDgYTvh3qGrU=");
 _c = LoginView;
 var _c;
 $RefreshReg$(_c, "LoginView");
