@@ -14,24 +14,25 @@ export const MainView = () => {
 
     useEffect(() => {
         if (!token) return;
-        fetch("https://tamarflix.herokuapp.com/movies"), {
-            headers: { Authorization: `Bearer ${token}` },
-        }
-        .then((response) => response.json())
-        .then((movies) => {
-            const moviesFromApi = data.map((movie) => {
-                return {
-                  id: movie.key,
-                  title: movie.Title,
-                  image: movie.ImagePath,
-                  description: movie.Description,
-                  genre: movie.Genre,
-                  director: movie.Director
-                };
-              });
-          setMovies(movies);
-        });
-    }, [token]);
+        fetch("https://tamarflix.herokuapp.com/movies", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+          .then((response) => response.json())
+          .then((movies) => {
+            const moviesFromApi = movies.map((movie) => ({
+              id: movie._id,
+              title: movie.Title,
+              image: movie.ImagePath,
+              description: movie.Description,
+              genre: movie.Genre.Name,
+              director: movie.Director.Name,
+            }));
+            setMovies(moviesFromApi);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, [token]);
 
     if (!user) {
         return (

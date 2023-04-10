@@ -27307,22 +27307,22 @@ const MainView = ()=>{
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         if (!token) return;
-        fetch("https://tamarflix.herokuapp.com/movies"), ({
+        fetch("https://tamarflix.herokuapp.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>response.json()).then((movies)=>{
-            const moviesFromApi = data.map((movie)=>{
-                return {
-                    id: movie.key,
+            const moviesFromApi = movies.map((movie)=>({
+                    id: movie._id,
                     title: movie.Title,
                     image: movie.ImagePath,
                     description: movie.Description,
-                    genre: movie.Genre,
-                    director: movie.Director
-                };
-            });
-            setMovies(movies);
+                    genre: movie.Genre.Name,
+                    director: movie.Director.Name
+                }));
+            setMovies(moviesFromApi);
+        }).catch((error)=>{
+            console.log(error);
         });
     }, [
         token
@@ -27336,13 +27336,13 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 39,
+                lineNumber: 40,
                 columnNumber: 11
             }, undefined),
             "or",
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 45,
+                lineNumber: 46,
                 columnNumber: 11
             }, undefined)
         ]
@@ -27358,7 +27358,7 @@ const MainView = ()=>{
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 53,
+                lineNumber: 54,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27366,7 +27366,7 @@ const MainView = ()=>{
                 onBackClick: ()=>setSelectedMovie(null)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 55,
+                lineNumber: 56,
                 columnNumber: 9
             }, undefined)
         ]
@@ -27380,14 +27380,14 @@ const MainView = ()=>{
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 66,
+                lineNumber: 67,
                 columnNumber: 15
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: "The list is empty!"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 73,
+                lineNumber: 74,
                 columnNumber: 15
             }, undefined)
         ]
@@ -27402,7 +27402,7 @@ const MainView = ()=>{
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 80,
+                lineNumber: 81,
                 columnNumber: 15
             }, undefined),
             movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
@@ -27412,13 +27412,13 @@ const MainView = ()=>{
                     }
                 }, movie.id, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 89,
+                    lineNumber: 90,
                     columnNumber: 17
                 }, undefined))
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 79,
+        lineNumber: 80,
         columnNumber: 13
     }, undefined);
 };
@@ -28544,7 +28544,7 @@ const LoginView = ({ onLoggedIn  })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: [
-                    "Username:",
+                    "UserName:",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "text",
                         value: UserName,
@@ -28586,7 +28586,7 @@ const LoginView = ({ onLoggedIn  })=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 59,
+                lineNumber: 60,
                 columnNumber: 9
             }, undefined)
         ]
@@ -28621,16 +28621,16 @@ var _react = require("react");
 var _s = $RefreshSig$();
 const SignupView = ()=>{
     _s();
-    const [username, setUsername] = (0, _react.useState)("");
+    const [UserName, setUserName] = (0, _react.useState)("");
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)("");
     const [birthday, setBirthday] = (0, _react.useState)("");
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            Username: username,
+            UserName: UserName,
             Password: password,
-            Email: email,
+            email: email,
             Birthday: birthday
         };
         fetch("https://tamarflix.herokuapp.com/users", {
@@ -28651,13 +28651,13 @@ const SignupView = ()=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: [
-                    "Username:",
+                    "UserName:",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "text",
-                        value: username,
-                        onChange: (e)=>setUsername(e.target.value),
+                        value: UserName,
+                        onChange: (e)=>setUserName(e.target.value),
                         required: true,
-                        minLength: "3"
+                        minLength: "5"
                     }, void 0, false, {
                         fileName: "src/components/signup-view/signup-view.jsx",
                         lineNumber: 39,
@@ -28690,7 +28690,7 @@ const SignupView = ()=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: [
-                    "Email:",
+                    "email:",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                         type: "email",
                         value: email,
@@ -28741,7 +28741,7 @@ const SignupView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(SignupView, "jsOQN3GC2XlBG9ITlzCdpyJOnso=");
+_s(SignupView, "JajJtFFvhMCgf5yHjVr74modcVI=");
 _c = SignupView;
 var _c;
 $RefreshReg$(_c, "SignupView");

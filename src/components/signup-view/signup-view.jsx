@@ -1,7 +1,7 @@
 import{ useState } from "react";
 
 export const SignupView = () => {
-  const [username, setUsername] = useState("");
+  const [UserName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -10,9 +10,9 @@ export const SignupView = () => {
     event.preventDefault();
 
     const data = {
-      Username: username,
+      UserName: UserName,
       Password: password,
-      Email: email,
+      email: email,
       Birthday: birthday
     };
 
@@ -35,13 +35,13 @@ export const SignupView = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Username:
+        UserName:
         <input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={UserName}
+          onChange={(e) => setUserName(e.target.value)}
           required
-          minLength="3"
+          minLength="5"
         />
       </label>
       <label>
@@ -54,7 +54,7 @@ export const SignupView = () => {
         />
       </label>
       <label>
-        Email:
+        email:
         <input
           type="email"
           value={email}
