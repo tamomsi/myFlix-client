@@ -27317,8 +27317,8 @@ const MainView = ()=>{
                     title: movie.Title,
                     image: movie.ImagePath,
                     description: movie.Description,
-                    genre: movie.Genre.Name,
-                    director: movie.Director.Name
+                    genre: movie.Genre,
+                    director: movie.Director
                 }));
             setMovies(moviesFromApi);
         }).catch((error)=>{
