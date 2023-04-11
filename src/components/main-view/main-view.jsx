@@ -38,71 +38,71 @@ export const MainView = () => {
       }, [token]);
 
       return (
-        <Row className="justify-content-md-center"> 
-          {!user ? (
-            <>
-              <Col md={4}>
-                <LoginView
-                  onLoggedIn={(user, token) => {
-                    setUser(user);
-                    setToken(token);
-                  }}
-                />
-              </Col>
-              <Col md={1}>or</Col>
-              <Col md={4}>
-                <SignupView />
-              </Col>
-            </>
-          ) : selectedMovie ? (
-            <>
-              <Button
-                onClick={() => {
-                  setUser(null);
-                  setToken(null);
-                  localStorage.clear();
-                }}
-              >
-                Logout
-              </Button>
-              <MovieView 
-                movie={selectedMovie} 
-                onBackClick={() => setSelectedMovie(null)} 
-              />
-            </>
-          ) : movies.length === 0 ? (
-            <>
-              <Button
-                onClick={() => {
-                  setUser(null);
-                  setToken(null);
-                }}
-              >
-                Logout
-              </Button>
-              <div>The list is empty!</div>
-            </>
-          ) : (
-            <>
-              <Button
-                onClick={() => {
-                  setUser(null);
-                  setToken(null);
-                }}
-              >
-                Logout
-              </Button>
-              {movies.map((movie) => (
-                <Col md={5} key={movie.id}>
-                  <MovieCard
-                    movie={movie}
-                    onMovieClick={(newSelectedMovie) => 
-                      setSelectedMovie(newSelectedMovie)
-                    }
-                  />
-                </Col>
-              ))}
-            </>
-          )}
-        </Row>
-      );
+  <Row className="justify-content-md-center"> 
+    {!user ? (
+      <>
+        <Col md={4}>
+          <LoginView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+            }}
+          />
+        </Col>
+        <Col md={1}>or</Col>
+        <Col md={4}>
+          <SignupView />
+        </Col>
+      </>
+    ) : selectedMovie ? (
+      <>
+        <Button
+          onClick={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+        >
+          Logout
+        </Button>
+        <MovieView 
+          movie={selectedMovie} 
+          onBackClick={() => setSelectedMovie(null)} 
+        />
+      </>
+    ) : movies.length === 0 ? (
+      <>
+        <Button
+          onClick={() => {
+            setUser(null);
+            setToken(null);
+          }}
+        >
+          Logout
+        </Button>
+        <div>The list is empty!</div>
+      </>
+    ) : (
+      <>
+        <Button
+          onClick={() => {
+            setUser(null);
+            setToken(null);
+          }}
+        >
+          Logout
+        </Button>
+        {movies.map((movie) => (
+          <Col md={3} key={movie.id}>
+            <MovieCard
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => 
+                setSelectedMovie(newSelectedMovie)
+              }
+            />
+          </Col>
+        ))}
+      </>
+    )}
+  </Row>
+);
