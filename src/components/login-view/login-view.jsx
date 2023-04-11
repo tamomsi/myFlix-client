@@ -10,7 +10,7 @@ export const LoginView = ({ onLoggedIn }) => {
   const validateForm = () => {
     let errors = {};
 
-    if (!userName.trim()) {
+    if (!UserName.trim()) {
       errors.UserName = "Username is required";
     }
 

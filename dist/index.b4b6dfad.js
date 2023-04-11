@@ -27441,6 +27441,7 @@ const MainView = ()=>{
                 }, undefined),
                 movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         md: 3,
+                        className: "mb-5",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                             movie: movie,
                             onMovieClick: (newSelectedMovie)=>setSelectedMovie(newSelectedMovie)
@@ -41537,7 +41538,7 @@ const LoginView = ({ onLoggedIn  })=>{
     const [formErrors, setFormErrors] = (0, _react.useState)({});
     const validateForm = ()=>{
         let errors = {};
-        if (!userName.trim()) errors.UserName = "Username is required";
+        if (!UserName.trim()) errors.UserName = "Username is required";
         if (!password.trim()) errors.password = "Password is required";
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
