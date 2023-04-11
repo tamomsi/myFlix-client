@@ -1,3 +1,5 @@
+import './movie-view.scss';
+
 export const MovieView = ({ movie, onBackClick }) => {
     return (
       <div>
@@ -28,7 +30,7 @@ export const MovieView = ({ movie, onBackClick }) => {
           <p><span>Genre Description:</span></p>
           <span>{movie.genre.Description}</span>
         </div>
-        <button onClick={onBackClick}>Back</button>
+        <button onClick={onBackClick} className="back-button">Back</button>
       </div>
     );
   };
