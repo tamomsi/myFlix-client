@@ -41,7 +41,7 @@ export const MainView = () => {
   <Row className="justify-content-md-center"> 
     {!user ? (
       <>
-        <Col md={4}>
+        <Col md={4} className="mb-1.5">
           <LoginView
             onLoggedIn={(user, token) => {
               setUser(user);
@@ -49,8 +49,8 @@ export const MainView = () => {
             }}
           />
         </Col>
-        <Col md={1}>or</Col>
-        <Col md={4}>
+        <Col md={1} className="mb-.25">or</Col>
+        <Col md={4} className="mb-1.5">
           <SignupView />
         </Col>
       </>

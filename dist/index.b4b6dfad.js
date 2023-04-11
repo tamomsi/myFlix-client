@@ -2937,9 +2937,6 @@ var _indexScss = require("./index.scss");
 const MyFlixApplication = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
         className: "my-flix",
-        style: {
-            border: "1px solid red"
-        },
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainView.MainView), {}, void 0, false, {
             fileName: "src/index.jsx",
             lineNumber: 12,
@@ -27346,6 +27343,7 @@ const MainView = ()=>{
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                     md: 4,
+                    className: "mb-1.5",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
                         onLoggedIn: (user, token)=>{
                             setUser(user);
@@ -27363,6 +27361,7 @@ const MainView = ()=>{
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                     md: 1,
+                    className: "mb-.25",
                     children: "or"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
@@ -27371,6 +27370,7 @@ const MainView = ()=>{
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                     md: 4,
+                    className: "mb-1.5",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupView.SignupView), {}, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 54,
