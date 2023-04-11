@@ -56,15 +56,6 @@ export const MainView = () => {
       </>
     ) : selectedMovie ? (
       <>
-        <Button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        >
-          Logout
-        </Button>
         <MovieView 
           movie={selectedMovie} 
           onBackClick={() => setSelectedMovie(null)} 
@@ -72,14 +63,6 @@ export const MainView = () => {
       </>
     ) : movies.length === 0 ? (
       <>
-        <Button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-          }}
-        >
-          Logout
-        </Button>
         <div>The list is empty!</div>
       </>
     ) : (
