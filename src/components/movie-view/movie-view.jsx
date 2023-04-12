@@ -5,7 +5,7 @@ import './movie-view.scss';
 export const MovieView = ({ movie, onBackClick }) => {
   return (
     <Card className="movie-card">
-      <Card.Img variant="top" src={movie.image} />
+      <Card.Img variant="top" src={movie.image} alt={movie.title} />
       <Card.Body>
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.description}</Card.Text>
