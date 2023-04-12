@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Row, Col } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedIn }) => {
   const [UserName, setUserName] = useState("");
@@ -58,32 +59,39 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
 return (
-  <Form onSubmit={handleSubmit}>
-    <Form.Group controlId="formUserName">
-      <Form.Label>UserName:</Form.Label>
-      <Form.Control
-        type="text"
-        value={UserName}
-        onChange={(e) => setUserName(e.target.value)}
-        required
-        minLength="5" 
-      />
-      {formErrors.UserName && <div>{formErrors.UserName}</div>}
-    </Form.Group>
-
-    <Form.Group controlId="formPassword">
-      <Form.Label>Password:</Form.Label>
-      <Form.Control
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      {formErrors.password && <div>{formErrors.password}</div>}
-    </Form.Group>
-    <Button variant="primary" type="submit">
-      Submit
-    </Button>
-  </Form>
-);
+  <Row>
+      <Col md={6}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formUserName">
+            <Form.Label>UserName:</Form.Label>
+            <Form.Control
+              type="text"
+              value={UserName}
+              onChange={(e) => setUserName(e.target.value)}
+              required
+              minLength="5" 
+            />
+            {formErrors.UserName && <div>{formErrors.UserName}</div>}
+          </Form.Group>
+        </Form>
+      </Col>
+      <Col md={6}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            {formErrors.password && <div>{formErrors.password}</div>}
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Col>
+    </Row>
+  );
 };
