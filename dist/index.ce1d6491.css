@@ -12014,4 +12014,9 @@ textarea.form-control-lg {
   padding: 4px 12px;
 }
 
+.movie-card {
+  max-width: 600px;
+  margin: 20px auto auto;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */

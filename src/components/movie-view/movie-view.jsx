@@ -1,37 +1,24 @@
+import React from 'react';
+import { Card, Button } from 'react-bootstrap';
 import './movie-view.scss';
 
 export const MovieView = ({ movie, onBackClick }) => {
-    return (
-      <div>
-        <div>
-          <img w-100 src={movie.image}/>
-        </div>
-        <div>
-          <span>Title: </span>
-          <span>{movie.title}</span>
-        </div>
-        <div>
-          <p><span>Description: </span></p>
-          <span>{movie.description}</span>
-        </div>
-        <div>
-          <p><span>Director: </span></p>
-          <span>{movie.director.Name}</span>
-          <p><span>Biography of the Director:</span></p>
-          <span>{movie.director.Bio}</span>
-          <p><span>Birth Year:</span></p>
-          <span>{movie.director.Birth}</span>
-          <p><span>Death Year:</span></p>
-          <span>{movie.director.Death}</span>
-        </div>
-        <div>
-          <p><span>Genre: </span></p>
-          <span>{movie.genre.Name}</span>
-          <p><span>Genre Description:</span></p>
-          <span>{movie.genre.Description}</span>
-        </div>
-        <button onClick={onBackClick} className="back-button">Back</button>
-      </div>
-    );
-  };
-  
+  return (
+    <Card className="movie-card">
+      <Card.Img variant="top" src={movie.image} />
+      <Card.Body>
+        <Card.Title>{movie.title}</Card.Title>
+        <Card.Text>{movie.description}</Card.Text>
+        <Card.Text>Director: {movie.director.Name}</Card.Text>
+        <Card.Text>Biography of the Director: {movie.director.Bio}</Card.Text>
+        <Card.Text>Birth Year: {movie.director.Birth}</Card.Text>
+        <Card.Text>Death Year: {movie.director.Death}</Card.Text>
+        <Card.Text>Genre: {movie.genre.Name}</Card.Text>
+        <Card.Text>Genre Description: {movie.genre.Description}</Card.Text>
+        <Button onClick={onBackClick} className="back-button" variant="primary">
+          Back
+        </Button>
+      </Card.Body>
+    </Card>
+  );
+};
