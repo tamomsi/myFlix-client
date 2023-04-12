@@ -60,10 +60,10 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     <Row>
-      <Col md={6}>
+      <Col xs={12} lg={10}>
         <Form>
           <CardGroup>
-            <Card>
+            <Card style={{ margin: '20px 0' }}>
               <Card.Body>
                 <Card.Title>Please Login</Card.Title>
                 <Form onSubmit={handleSubmit}>
@@ -76,7 +76,7 @@ export const LoginView = ({ onLoggedIn }) => {
                       required
                       minLength="5"
                     />
-                    {formErrors.userName && <div>{formErrors.userName}</div>}
+                    {formErrors.UserName && <div>{formErrors.UserName}</div>}
                   </Form.Group>
 
                   <Form.Group controlId="formPassword">
@@ -89,7 +89,7 @@ export const LoginView = ({ onLoggedIn }) => {
                     />
                     {formErrors.password && <div>{formErrors.password}</div>}
                   </Form.Group>
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="submit" style={{ margin: '20px 0' }}>
                     Submit
                   </Button>
                 </Form>
