@@ -27362,6 +27362,9 @@ const MainView = ()=>{
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                     md: 1,
                     className: "mb-.25",
+                    style: {
+                        margin: "50px 0"
+                    },
                     children: "or"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",

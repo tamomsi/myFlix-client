@@ -50,7 +50,7 @@ export const MainView = () => {
     }}
   />
 </Col>
-<Col md={1} className="mb-.25">
+<Col md={1} className="mb-.25" style={{ margin: '50px 0' }}>
   or
 </Col>
 <Col md={4} className="mb-1.5">
