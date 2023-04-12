@@ -42,19 +42,20 @@ export const MainView = () => {
       {!user ? (
         <>
           <Col md={4} className="mb-1.5">
-            <LoginView
-              onLoggedIn={(user, token) => {
-                setUser(user);
-                setToken(token);
-              }}
-            />
-          </Col>
-          <Col md={1} className="mb-.25">
-            or
-          </Col>
-          <Col md={4} className="mb-1.5">
-            <SignupView />
-          </Col>
+  <LoginView
+    className="form"
+    onLoggedIn={(user, token) => {
+      setUser(user);
+      setToken(token);
+    }}
+  />
+</Col>
+<Col md={1} className="mb-.25">
+  or
+</Col>
+<Col md={4} className="mb-1.5">
+  <SignupView className="form" />
+</Col>
         </>
       ) : selectedMovie ? (
         <>
@@ -66,14 +67,13 @@ export const MainView = () => {
         </>
       ) : (
         <>
-          <Button
-            onClick={() => {
-              setUser(null);
-              setToken(null);
-            }}
-          >
-            Logout
-          </Button>
+          <Col xs={12} className="mb-1.5">
+  <div style={{ textAlign: "right" }}>
+    <Button onClick={() => { setUser(null); setToken(null); }}>
+      Logout
+    </Button>
+  </div>
+</Col>
           {movies.map((movie) => (
             <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
               <MovieCard
