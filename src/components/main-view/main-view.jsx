@@ -38,7 +38,7 @@ export const MainView = () => {
   }, [token]);
 
   return (
-    <Row className="justify-content-md-center">
+    <Row className="justify-content-md-center main-view-content">
       {!user ? (
         <>
           <Col md={4} className="mb-1.5">
