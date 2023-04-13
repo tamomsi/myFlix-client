@@ -7,7 +7,12 @@
 }
 
 .movie-card {
-  max-width: 600px;
-  margin: auto;
-  margin-top: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.movie-view-container {
+  max-height: 95vh;
+  margin: 0 auto;
+  overflow-y: auto;
 }
