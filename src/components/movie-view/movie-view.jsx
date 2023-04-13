@@ -4,6 +4,7 @@ import './movie-view.scss';
 
 export const MovieView = ({ movie, onBackClick }) => {
   return (
+    <div className="movie-view-container">
     <Card className="movie-card">
       <Card.Img variant="top" src={movie.image} alt={movie.title} />
       <Card.Body>
@@ -20,5 +21,6 @@ export const MovieView = ({ movie, onBackClick }) => {
         </Button>
       </Card.Body>
     </Card>
+    </div>
   );
 };
