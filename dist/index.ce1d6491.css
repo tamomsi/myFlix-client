@@ -1,3 +1,12 @@
+.btn-primary {
+  border-color: #2f4f4f;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #1c2f2f;
+  border-color: #1c2f2f;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -12015,8 +12024,14 @@ textarea.form-control-lg {
 }
 
 .movie-card {
-  max-width: 600px;
-  margin: 20px auto auto;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.movie-view-container {
+  max-height: 95vh;
+  margin: 0 auto;
+  overflow-y: auto;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */
