@@ -61,42 +61,40 @@ export const LoginView = ({ onLoggedIn }) => {
   return (
     <Row>
       <Col xs={12} lg={10}>
-        <Form>
-          <CardGroup>
-            <Card style={{ margin: '20px 0' }}>
-              <Card.Body>
-                <Card.Title>Please Login</Card.Title>
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group controlId="formUserLogin">
-                    <Form.Label>UserName:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      value={UserName}
-                      onChange={(e) => setUserName(e.target.value)}
-                      required
-                      minLength="5"
-                    />
-                    {formErrors.UserName && <div>{formErrors.UserName}</div>}
-                  </Form.Group>
+        <CardGroup>
+          <Card style={{ margin: '20px 0' }}>
+            <Card.Body>
+              <Card.Title>Please Login</Card.Title>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="formUserLogin">
+                  <Form.Label>UserName:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={UserName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    required
+                    minLength="5"
+                  />
+                  {formErrors.UserName && <div>{formErrors.UserName}</div>}
+                </Form.Group>
 
-                  <Form.Group controlId="formPassword">
-                    <Form.Label>Password:</Form.Label>
-                    <Form.Control
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                    {formErrors.password && <div>{formErrors.password}</div>}
-                  </Form.Group>
-                  <Button variant="primary" type="submit" style={{ margin: '20px 0' }}>
-                    Submit
-                  </Button>
-                </Form>
-              </Card.Body>
-            </Card>
-          </CardGroup>
-        </Form>
+                <Form.Group controlId="formPassword">
+                  <Form.Label>Password:</Form.Label>
+                  <Form.Control
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  {formErrors.password && <div>{formErrors.password}</div>}
+                </Form.Group>
+                <Button variant="primary" type="submit" style={{ margin: '20px 0' }}>
+                  Submit
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </CardGroup>
       </Col>
     </Row>
   );
