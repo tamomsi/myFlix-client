@@ -21,11 +21,13 @@ import { Link } from "react-router-dom";
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
           <Card.Text>{truncatedDescription}</Card.Text>
+          <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Button 
           onClick={() => onMovieClick(movie)} 
           variant="link">
             Open
           </Button>
+          </Link>
         </Card.Body>
       </Card>
     );
