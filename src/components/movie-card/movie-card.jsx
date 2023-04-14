@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import './movie-card.scss';
+import { Link } from "react-router-dom";
 
   export const MovieCard = ({ movie, onMovieClick }) => {
          const maxDescriptionLength = 100; // set the maximum length of the truncated description
