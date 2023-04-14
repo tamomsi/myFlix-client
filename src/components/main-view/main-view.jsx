@@ -39,8 +39,15 @@ export const MainView = () => {
       });
   }, [token]);
 
+  const handleLogout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear(); // This will clear all the items in localStorage
+  };
+
   return (
     <BrowserRouter>
+      <NavigationBar user={user} onLoggedOut={handleLogout} />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -72,17 +79,15 @@ export const MainView = () => {
                 <>
                   <Col xs={12} className="mb-1.5">
                     <div style={{ textAlign: "right" }}>
-                      <Button onClick={() => { setUser(null); setToken(null); }}>
+                      <Button onClick={handleLogout}>
                         Logout
                       </Button>
                     </div>
                   </Col>
                   {movies.map((movie) => (
                     <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
-                    <MovieCard
-                      movie={movie}
-                    />
-                  </Col>
+                      <MovieCard movie={movie} />
+                    </Col>
                   ))}
                 </>
               )
