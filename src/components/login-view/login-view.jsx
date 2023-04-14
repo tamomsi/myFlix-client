@@ -67,7 +67,7 @@ export const LoginView = ({ onLoggedIn }) => {
               <Card.Body>
                 <Card.Title>Please Login</Card.Title>
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group controlId="formUserName">
+                  <Form.Group controlId="formUserLogin">
                     <Form.Label>UserName:</Form.Label>
                     <Form.Control
                       type="text"

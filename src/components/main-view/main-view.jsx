@@ -7,7 +7,7 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -78,9 +78,7 @@ export const MainView = () => {
                 <>
                   <Col xs={12} className="mb-1.5">
                     <div style={{ textAlign: "right" }}>
-                      <Button onClick={handleLogout}>
-                        Logout
-                      </Button>
+                    <Link to="/" onClick={handleLogout}>Logout</Link>
                     </div>
                   </Col>
                   {movies.map((movie) => (

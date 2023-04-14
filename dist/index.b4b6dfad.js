@@ -5921,7 +5921,8 @@ const MainView = ()=>{
                                             style: {
                                                 textAlign: "right"
                                             },
-                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                to: "/",
                                                 onClick: handleLogout,
                                                 children: "Logout"
                                             }, void 0, false, void 0, void 0)
@@ -5951,7 +5952,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 95,
+                            lineNumber: 93,
                             columnNumber: 11
                         }, undefined)
                     ]
@@ -46655,7 +46656,7 @@ const LoginView = ({ onLoggedIn  })=>{
                                     onSubmit: handleSubmit,
                                     children: [
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                            controlId: "formUserName",
+                                            controlId: "formUserLogin",
                                             children: [
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
                                                     children: "UserName:"
@@ -46843,177 +46844,171 @@ const SignupView = ()=>{
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
             xs: 12,
             lg: 10,
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.CardGroup), {
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-                        style: {
-                            margin: "20px 0"
-                        },
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                                    children: "Please SignUp"
-                                }, void 0, false, {
-                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 61,
-                                    columnNumber: 3
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
-                                    onSubmit: handleSubmit,
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                            controlId: "formUserName",
-                                            children: [
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                                    children: "Username:"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                                    lineNumber: 64,
-                                                    columnNumber: 7
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                                    type: "text",
-                                                    value: UserName,
-                                                    onChange: (e)=>setUserName(e.target.value),
-                                                    required: true,
-                                                    minLength: "5"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                                    lineNumber: 65,
-                                                    columnNumber: 7
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/signup-view/signup-view.jsx",
-                                            lineNumber: 63,
-                                            columnNumber: 5
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                            controlId: "formPassword",
-                                            children: [
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                                    children: "Password:"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                                    lineNumber: 75,
-                                                    columnNumber: 7
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                                    type: "password",
-                                                    value: password,
-                                                    onChange: (e)=>setPassword(e.target.value),
-                                                    required: true,
-                                                    minLength: "8"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                                    lineNumber: 76,
-                                                    columnNumber: 9
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/signup-view/signup-view.jsx",
-                                            lineNumber: 74,
-                                            columnNumber: 7
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                            controlId: "formEmail",
-                                            children: [
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                                    children: "Email:"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                                    lineNumber: 86,
-                                                    columnNumber: 7
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                                    type: "email",
-                                                    value: email,
-                                                    onChange: (e)=>setEmail(e.target.value),
-                                                    required: true
-                                                }, void 0, false, {
-                                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                                    lineNumber: 87,
-                                                    columnNumber: 9
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/signup-view/signup-view.jsx",
-                                            lineNumber: 85,
-                                            columnNumber: 7
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
-                                            controlId: "formBirthday",
-                                            children: [
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
-                                                    children: "Birthday:"
-                                                }, void 0, false, {
-                                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                                    lineNumber: 96,
-                                                    columnNumber: 7
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-                                                    type: "date",
-                                                    value: birthday,
-                                                    onChange: (e)=>setBirthday(e.target.value),
-                                                    required: true
-                                                }, void 0, false, {
-                                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                                    lineNumber: 97,
-                                                    columnNumber: 9
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/signup-view/signup-view.jsx",
-                                            lineNumber: 95,
-                                            columnNumber: 7
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                                            type: "submit",
-                                            style: {
-                                                margin: "20px 0"
-                                            },
-                                            children: "Submit"
-                                        }, void 0, false, {
-                                            fileName: "src/components/signup-view/signup-view.jsx",
-                                            lineNumber: 104,
-                                            columnNumber: 7
-                                        }, undefined)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 62,
-                                    columnNumber: 5
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 60,
-                            columnNumber: 3
-                        }, undefined)
-                    }, void 0, false, {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.CardGroup), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+                    style: {
+                        margin: "20px 0"
+                    },
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                                children: "Please SignUp"
+                            }, void 0, false, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 60,
+                                columnNumber: 15
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
+                                onSubmit: handleSubmit,
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                        controlId: "formUserName",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                                children: "Username:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/signup-view/signup-view.jsx",
+                                                lineNumber: 63,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                                type: "text",
+                                                value: UserName,
+                                                onChange: (e)=>setUserName(e.target.value),
+                                                required: true,
+                                                minLength: "5"
+                                            }, void 0, false, {
+                                                fileName: "src/components/signup-view/signup-view.jsx",
+                                                lineNumber: 64,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/signup-view/signup-view.jsx",
+                                        lineNumber: 62,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                        controlId: "formSignupPassword",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                                children: "Password:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/signup-view/signup-view.jsx",
+                                                lineNumber: 74,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                                type: "password",
+                                                value: password,
+                                                onChange: (e)=>setPassword(e.target.value),
+                                                required: true,
+                                                minLength: "8"
+                                            }, void 0, false, {
+                                                fileName: "src/components/signup-view/signup-view.jsx",
+                                                lineNumber: 75,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/signup-view/signup-view.jsx",
+                                        lineNumber: 73,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                        controlId: "formEmail",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                                children: "Email:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/signup-view/signup-view.jsx",
+                                                lineNumber: 85,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                                type: "email",
+                                                value: email,
+                                                onChange: (e)=>setEmail(e.target.value),
+                                                required: true
+                                            }, void 0, false, {
+                                                fileName: "src/components/signup-view/signup-view.jsx",
+                                                lineNumber: 86,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/signup-view/signup-view.jsx",
+                                        lineNumber: 84,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
+                                        controlId: "formBirthday",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Label, {
+                                                children: "Birthday:"
+                                            }, void 0, false, {
+                                                fileName: "src/components/signup-view/signup-view.jsx",
+                                                lineNumber: 95,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
+                                                type: "date",
+                                                value: birthday,
+                                                onChange: (e)=>setBirthday(e.target.value),
+                                                required: true
+                                            }, void 0, false, {
+                                                fileName: "src/components/signup-view/signup-view.jsx",
+                                                lineNumber: 96,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/signup-view/signup-view.jsx",
+                                        lineNumber: 94,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                        type: "submit",
+                                        style: {
+                                            margin: "20px 0"
+                                        },
+                                        children: "Submit"
+                                    }, void 0, false, {
+                                        fileName: "src/components/signup-view/signup-view.jsx",
+                                        lineNumber: 103,
+                                        columnNumber: 17
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/signup-view/signup-view.jsx",
+                                lineNumber: 61,
+                                columnNumber: 15
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/signup-view/signup-view.jsx",
                         lineNumber: 59,
-                        columnNumber: 3
+                        columnNumber: 13
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/signup-view/signup-view.jsx",
                     lineNumber: 58,
-                    columnNumber: 3
+                    columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
                 lineNumber: 57,
-                columnNumber: 3
+                columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/signup-view/signup-view.jsx",
             lineNumber: 56,
-            columnNumber: 3
+            columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/signup-view/signup-view.jsx",
         lineNumber: 55,
-        columnNumber: 3
+        columnNumber: 5
     }, undefined);
 };
 _s(SignupView, "JajJtFFvhMCgf5yHjVr74modcVI=");
