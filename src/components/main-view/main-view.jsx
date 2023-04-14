@@ -78,7 +78,11 @@ export const MainView = () => {
                 <>
                   <Col xs={12} className="mb-1.5">
                     <div style={{ textAlign: "right" }}>
-                    <Link to="/" onClick={handleLogout}>Logout</Link>
+                    <Link to="/">
+                    <Button onClick={handleLogout}>
+                        Logout
+                      </Button>  
+                        </Link>
                     </div>
                   </Col>
                   {movies.map((movie) => (
@@ -91,7 +95,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/movies"
+            path="/movies/:movieId" 
             element={<Navigate to="/" />}
           />
         </Routes>
