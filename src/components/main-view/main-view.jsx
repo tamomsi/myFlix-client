@@ -7,6 +7,7 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 
 export const MainView = () => {
@@ -96,7 +97,7 @@ export const MainView = () => {
           />
           <Route
             path="/movies/:movieId" 
-            element={<Navigate to="/" />}
+            element={<MovieView movies={movies} />}
           />
         </Routes>
       </Row>

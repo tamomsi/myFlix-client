@@ -13,7 +13,6 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/movies">Movies</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

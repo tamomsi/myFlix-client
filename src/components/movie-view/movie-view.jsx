@@ -8,10 +8,6 @@ export const MovieView = ({ movies }) => {
 
   const movie = movies.find((m) => m.id === movieId);
 
-  const onBackClick = () => {
-    window.history.back();
-  }
-
   return (
     <div className="movie-view-container">
       <Card className="movie-card">
@@ -26,7 +22,7 @@ export const MovieView = ({ movies }) => {
           <Card.Text>Genre: {movie.genre.Name}</Card.Text>
           <Card.Text>Genre Description: {movie.genre.Description}</Card.Text>
           <Link to={`/`}>
-            <Button onClick={onBackClick} className="back-button" variant="primary">
+            <Button className="back-button" variant="primary">
               Back
             </Button>
           </Link>
