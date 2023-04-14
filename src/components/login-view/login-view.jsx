@@ -1,15 +1,18 @@
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { Row, Col, Card, CardGroup } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedIn }) => {
-  const [userName, setUserName] = useState("");
+  const [UserName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [formErrors, setFormErrors] = useState({});
 
   const validateForm = () => {
     let errors = {};
 
-    if (!userName.trim()) {
-      errors.userName = "Username is required";
+    if (!UserName.trim()) {
+      errors.UserName = "Username is required";
     }
 
     if (!password.trim()) {
@@ -28,7 +31,7 @@ export const LoginView = ({ onLoggedIn }) => {
     }
 
     const data = {
-      UserName: userName,
+      UserName: UserName,
       Password: password
     };
 
@@ -56,29 +59,45 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        UserName:
-        <input
-          type="text"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          required
-          minLength="5"
-        />
-        {formErrors.userName && <div>{formErrors.userName}</div>}
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        {formErrors.password && <div>{formErrors.password}</div>}
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <Row>
+      <Col xs={12} lg={10}>
+        <Form>
+          <CardGroup>
+            <Card style={{ margin: '20px 0' }}>
+              <Card.Body>
+                <Card.Title>Please Login</Card.Title>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="formUserName">
+                    <Form.Label>UserName:</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={UserName}
+                      onChange={(e) => setUserName(e.target.value)}
+                      required
+                      minLength="5"
+                    />
+                    {formErrors.UserName && <div>{formErrors.UserName}</div>}
+                  </Form.Group>
+
+                  <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    {formErrors.password && <div>{formErrors.password}</div>}
+                  </Form.Group>
+                  <Button variant="primary" type="submit" style={{ margin: '20px 0' }}>
+                    Submit
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Form>
+      </Col>
+    </Row>
   );
 };

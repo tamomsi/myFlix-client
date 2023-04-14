@@ -1,14 +1,32 @@
+import React from "react";
 import PropTypes from "prop-types";
+import { Button, Card } from "react-bootstrap";
+import './movie-card.scss';
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+  export const MovieCard = ({ movie, onMovieClick }) => {
+         const maxDescriptionLength = 100; // set the maximum length of the truncated description
+         const truncatedDescription = movie.description.length > maxDescriptionLength
+          ? `${movie.description.substring(0, maxDescriptionLength)}...`
+          : movie.description; // check if the length of the description exceeds the maximum length, and truncate it if necessary
+
     return (
-      <div
-        onClick={() => {
-          onMovieClick(movie);
-        }}
-      >
-        {movie.title}
-      </div>
+      <Card className="h-100">
+        <Card.Img 
+        className="movie-card-img"
+        variant="top" 
+        src={movie.image} 
+        alt={movie.title} 
+        />
+        <Card.Body>
+          <Card.Title>{movie.title}</Card.Title>
+          <Card.Text>{truncatedDescription}</Card.Text>
+          <Button 
+          onClick={() => onMovieClick(movie)} 
+          variant="link">
+            Open
+          </Button>
+        </Card.Body>
+      </Card>
     );
   };
   
