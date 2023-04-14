@@ -78,21 +78,20 @@ export const MainView = () => {
                   </Col>
                   {movies.map((movie) => (
                     <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
-                      <MovieCard
-                        movie={movie}
-                        onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}
-                      />
-                    </Col>
+                    <MovieCard
+                      movie={movie}
+                    />
+                  </Col>
                   ))}
                 </>
               )
             }
           />
           <Route
-            path="/movies/:movieId"
+            path="/movies"
             element={
               selectedMovie ? (
-                <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+                <MovieView movie={selectedMovie} />
               ) : (
                 <Navigate to="/" />
               )
