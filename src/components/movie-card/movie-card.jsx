@@ -4,7 +4,7 @@ import { Button, Card } from "react-bootstrap";
 import './movie-card.scss';
 import { Link } from "react-router-dom";
 
-  export const MovieCard = ({ movie, onMovieClick }) => {
+  export const MovieCard = ({ movie }) => {
          const maxDescriptionLength = 100; // set the maximum length of the truncated description
          const truncatedDescription = movie.description.length > maxDescriptionLength
           ? `${movie.description.substring(0, maxDescriptionLength)}...`
@@ -48,6 +48,5 @@ import { Link } from "react-router-dom";
         birth: PropTypes.string,
         death: PropTypes.string
     }).isRequired 
-}).isRequired,
-    onMovieClick: PropTypes.func.isRequired
+}).isRequired
   };
