@@ -27470,9 +27470,9 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
-var _movieCardScss = require("./movie-card.scss");
 var _reactRouterDom = require("react-router-dom");
-const MovieCard = ({ movie  })=>{
+var _movieCardScss = require("./movie-card.scss");
+const MovieCard = ({ movie , onMovieClick  })=>{
     const maxDescriptionLength = 100; // set the maximum length of the truncated description
     const truncatedDescription = movie.description.length > maxDescriptionLength ? `${movie.description.substring(0, maxDescriptionLength)}...` : movie.description; // check if the length of the description exceeds the maximum length, and truncate it if necessary
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
@@ -27485,8 +27485,8 @@ const MovieCard = ({ movie  })=>{
                 alt: movie.title
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 15,
-                columnNumber: 9
+                lineNumber: 16,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                 children: [
@@ -27494,62 +27494,62 @@ const MovieCard = ({ movie  })=>{
                         children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 22,
-                        columnNumber: 11
+                        lineNumber: 23,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: truncatedDescription
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 23,
-                        columnNumber: 11
+                        lineNumber: 24,
+                        columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                         to: `/movies/${encodeURIComponent(movie.id)}`,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            onClick: ()=>onMovieClick(movie),
                             variant: "link",
                             children: "Open"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 25,
+                            lineNumber: 26,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 24,
-                        columnNumber: 11
+                        lineNumber: 25,
+                        columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 21,
-                columnNumber: 9
+                lineNumber: 22,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 14,
-        columnNumber: 7
+        lineNumber: 15,
+        columnNumber: 5
     }, undefined);
 };
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
-        title: (0, _propTypesDefault.default).string,
-        description: (0, _propTypesDefault.default).string,
-        image: (0, _propTypesDefault.default).string,
+        title: (0, _propTypesDefault.default).string.isRequired,
+        description: (0, _propTypesDefault.default).string.isRequired,
+        image: (0, _propTypesDefault.default).string.isRequired,
         genre: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string,
-            description: (0, _propTypesDefault.default).string
+            name: (0, _propTypesDefault.default).string.isRequired,
+            description: (0, _propTypesDefault.default).string.isRequired
         }).isRequired,
         director: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string,
-            bio: (0, _propTypesDefault.default).string,
+            name: (0, _propTypesDefault.default).string.isRequired,
+            bio: (0, _propTypesDefault.default).string.isRequired,
             birth: (0, _propTypesDefault.default).string,
             death: (0, _propTypesDefault.default).string
         }).isRequired
-    }).isRequired
+    }).isRequired,
+    onMovieClick: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieCard");
