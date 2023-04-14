@@ -78,13 +78,6 @@ export const MainView = () => {
               ) : (
                 <>
                   <Col xs={12} className="mb-1.5">
-                    <div style={{ textAlign: "right" }}>
-                    <Link to="/">
-                    <Button onClick={handleLogout}>
-                        Logout
-                      </Button>  
-                        </Link>
-                    </div>
                   </Col>
                   {movies.map((movie) => (
                     <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
