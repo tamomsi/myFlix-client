@@ -5991,9 +5991,15 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _movieCardScss = require("./movie-card.scss");
 var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
 const MovieCard = ({ movie  })=>{
+    _s();
     const maxDescriptionLength = 100; // set the maximum length of the truncated description
     const truncatedDescription = movie.description.length > maxDescriptionLength ? `${movie.description.substring(0, maxDescriptionLength)}...` : movie.description; // check if the length of the description exceeds the maximum length, and truncate it if necessary
+    const [isFavorite, setIsFavorite] = useState(false);
+    const handleFavoriteClick = ()=>{
+        setIsFavorite(!isFavorite);
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100",
         children: [
@@ -6004,8 +6010,8 @@ const MovieCard = ({ movie  })=>{
                 alt: movie.title
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 15,
-                columnNumber: 9
+                lineNumber: 22,
+                columnNumber: 15
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                 children: [
@@ -6013,44 +6019,64 @@ const MovieCard = ({ movie  })=>{
                         children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 22,
-                        columnNumber: 11
+                        lineNumber: 29,
+                        columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: truncatedDescription
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 23,
-                        columnNumber: 11
+                        lineNumber: 30,
+                        columnNumber: 17
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: `/movies/${encodeURIComponent(movie.id)}`,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            variant: "link",
-                            children: "Open"
-                        }, void 0, false, {
-                            fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 25,
-                            columnNumber: 11
-                        }, undefined)
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "button-group",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                to: `/movies/${encodeURIComponent(movie.id)}`,
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                    variant: "link",
+                                    children: "Open"
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-card/movie-card.jsx",
+                                    lineNumber: 33,
+                                    columnNumber: 21
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 32,
+                                columnNumber: 19
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                variant: "primary",
+                                className: `favorite-button ${isFavorited ? "favorited" : "not-favorited"}`,
+                                onClick: handleFavoriteClick,
+                                children: isFavorited ? "Favorited" : "Add to Favorites"
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 35,
+                                columnNumber: 19
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 24,
-                        columnNumber: 11
+                        lineNumber: 31,
+                        columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 21,
-                columnNumber: 9
+                lineNumber: 28,
+                columnNumber: 15
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 14,
-        columnNumber: 7
+        lineNumber: 21,
+        columnNumber: 13
     }, undefined);
 };
+_s(MovieCard, "k950Z1JpPS3WYtE75BCawi6VGEM=");
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
@@ -6067,7 +6093,8 @@ MovieCard.propTypes = {
             birth: (0, _propTypesDefault.default).string,
             death: (0, _propTypesDefault.default).string
         }).isRequired
-    })
+    }).isRequired,
+    onAddToFavorites: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieCard");
