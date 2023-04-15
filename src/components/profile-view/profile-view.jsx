@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import UserInfo from "./user-info";
+import FavoriteMovies from "./favorite-movies";
 import "./profile-view.scss";
 
 export function ProfileView({ movies, onUpdateUserInfo }) {
