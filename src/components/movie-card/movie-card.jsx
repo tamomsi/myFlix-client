@@ -4,7 +4,7 @@ import { Button, Card } from "react-bootstrap";
 import './movie-card.scss';
 import { Link } from "react-router-dom";
 
-  export const MovieCard = ({ movie}) => {
+  export const MovieCard = ({ movie, onMovieClick, onAddToFavorites}) => {
          const maxDescriptionLength = 100; // set the maximum length of the truncated description
          const truncatedDescription = movie.description.length > maxDescriptionLength
           ? `${movie.description.substring(0, maxDescriptionLength)}...`
@@ -12,9 +12,9 @@ import { Link } from "react-router-dom";
 
           const [isFavorite, setIsFavorite] = useState(false);
 
-          const handleFavoriteClick = () => {
-            setIsFavorite(!isFavorite);
-            
+          const handleAddToFavoritesClick = (event) => {
+            event.preventDefault();
+            onAddToFavorites(movie.id);
           };
         
           return (

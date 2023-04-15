@@ -5947,7 +5947,7 @@ const MainView = ()=>{
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                            path: "/profile/:UserName",
+                            path: "/users/:UserName",
                             element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                 user: user
                             }, void 0, false, void 0, void 0)
@@ -6013,13 +6013,14 @@ var _reactBootstrap = require("react-bootstrap");
 var _movieCardScss = require("./movie-card.scss");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const MovieCard = ({ movie  })=>{
+const MovieCard = ({ movie , onMovieClick , onAddToFavorites  })=>{
     _s();
     const maxDescriptionLength = 100; // set the maximum length of the truncated description
     const truncatedDescription = movie.description.length > maxDescriptionLength ? `${movie.description.substring(0, maxDescriptionLength)}...` : movie.description; // check if the length of the description exceeds the maximum length, and truncate it if necessary
     const [isFavorite, setIsFavorite] = (0, _react.useState)(false);
-    const handleFavoriteClick = ()=>{
-        setIsFavorite(!isFavorite);
+    const handleAddToFavoritesClick = (event)=>{
+        event.preventDefault();
+        onAddToFavorites(movie.id);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100",

@@ -94,7 +94,7 @@ export const MainView = () => {
             element={<MovieView movies={movies} />}
           />
           <Route 
-            path="/profile/:UserName"
+            path="/users/:UserName"
             element={<ProfileView user={user} />}
           />
           <Route path="*" element={<Navigate to="/" />} />
