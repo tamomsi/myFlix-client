@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import './movie-card.scss';
@@ -33,14 +33,14 @@ import { Link } from "react-router-dom";
                     <Button variant="link">Open</Button>
                   </Link>
                   <Button
-                    variant="primary"
-                    className={`favorite-button ${
-                      isFavorited ? "favorited" : "not-favorited"
+                         variant="primary"
+                        className={`favorite-button ${
+                        isFavorite ? "favorited" : "not-favorited"
                     }`}
-                    onClick={handleFavoriteClick}
+                  onClick={handleFavoriteClick}
                   >
-                    {isFavorited ? "Favorited" : "Add to Favorites"}
-                  </Button>
+                   {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+                </Button>
                 </div>
               </Card.Body>
             </Card>

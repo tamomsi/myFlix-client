@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap';
 import './movie-view.scss';

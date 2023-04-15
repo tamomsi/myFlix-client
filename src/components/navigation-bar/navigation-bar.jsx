@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -26,7 +27,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/">Profile</Nav.Link>
+            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
           </Nav>
           {!loggedIn ? (
             <Nav className="ms-auto">
