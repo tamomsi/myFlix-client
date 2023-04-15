@@ -59,7 +59,7 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
           <UserInfo user={user} />
           <UpdateUser user={user} onUpdateUser={handleUpdateUser} />
           <hr />
-          <FavoriteMovies movies={favoriteMovieList} />
+          <FavoriteMovies favoriteMovieList={favoriteMovieList} />
           <hr />
           <Link to="/">
             <Button variant="primary">Back to Movies</Button>

@@ -46,6 +46,28 @@ export const MainView = () => {
     localStorage.clear(); // This will clear all the items in localStorage
   };
 
+  const handleAddToFavorites = (movieId) => {
+    const movieToAdd = movies.find((movie) => movie.id === movieId);
+    if (!favorites.some((movie) => movie.id === movieId)) {
+      setFavorites([...favorites, movieToAdd]);
+    }
+  };
+
+  const handleFavoriteClick = (movieId) => {
+    const movieToAdd = movies.find((movie) => movie.id === movieId);
+    if (!favorites.some((movie) => movie.id === movieId)) {
+      setFavorites([...favorites, movieToAdd]);
+      fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
+    }
+  } 
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={handleLogout} />
@@ -82,7 +104,9 @@ export const MainView = () => {
                   </Col>
                   {movies.map((movie) => (
                     <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
-                      <MovieCard movie={movie} />
+                      <MovieCard movie={movie} 
+                      onAddToFavorites={(movieId) => handleAddToFavorites(movieId)} 
+                      />
                     </Col>
                   ))}
                 </>
