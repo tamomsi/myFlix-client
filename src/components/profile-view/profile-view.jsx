@@ -80,23 +80,8 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
   return (
     <div>
       <UserInfo name={user.UserName} email={user.Email} />
-      <h2>Favorite Movies</h2>
-      {favoriteMovieList.map((movie) => {
-        return (
-          <div key={movie._id}>
-            <img src={movie.ImagePath} alt="" />
-            <Link to={`/movies/${movie._id}`}>
-              <h4>{movie.Title}</h4>
-            </Link>
-            <Button
-              variant="secondary"
-              onClick={() => removeFav(movie._id)}
-            >
-              Remove from list
-            </Button>
-          </div>
-        );
-      })}
+      <FavoriteMovies favoriteMovieList={favoriteMovieList}/>
+
       <form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
         <h2>Want to change some info?</h2>
         <Form.Group controlId="formUsername">
