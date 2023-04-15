@@ -47337,10 +47337,13 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _s = $RefreshSig$();
 const UserInfo = ({ email , name , birthday  })=>{
     _s();
-    const [user, setUser] = useState({});
-    useEffect(()=>{
-        axios.get("/users").then((response)=>{
-            const loggedInUser = response.data.find((u)=>u.username === "your-username");
+    const [user, setUser] = (0, _react.useState)({});
+    (0, _react.useEffect)(()=>{
+        fetch("/users").then((response)=>{
+            if (response.ok) return response.json();
+            throw new Error("Network response was not ok.");
+        }).then((data)=>{
+            const loggedInUser = data.find((u)=>u.UserName === "your-UserName");
             setUser(loggedInUser);
         }).catch((error)=>{
             console.log(error);
@@ -47355,8 +47358,8 @@ const UserInfo = ({ email , name , birthday  })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 19,
-                columnNumber: 9
+                lineNumber: 25,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
@@ -47365,8 +47368,8 @@ const UserInfo = ({ email , name , birthday  })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 20,
-                columnNumber: 9
+                lineNumber: 26,
+                columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
@@ -47375,8 +47378,8 @@ const UserInfo = ({ email , name , birthday  })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 21,
-                columnNumber: 9
+                lineNumber: 27,
+                columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);

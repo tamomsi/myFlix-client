@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import fetch from 'node-fetch';
 
 export const UserInfo = ({ email, name, birthday }) => {
   const [user, setUser] = useState({});
@@ -19,7 +18,7 @@ export const UserInfo = ({ email, name, birthday }) => {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, []);  
 
   return (
     <>
