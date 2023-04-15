@@ -47334,7 +47334,18 @@ parcelHelpers.export(exports, "UserInfo", ()=>UserInfo);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _s = $RefreshSig$();
 const UserInfo = ({ email , name , birthday  })=>{
+    _s();
+    const [user, setUser] = useState({});
+    useEffect(()=>{
+        axios.get("/users").then((response)=>{
+            const loggedInUser = response.data.find((u)=>u.username === "your-username");
+            setUser(loggedInUser);
+        }).catch((error)=>{
+            console.log(error);
+        });
+    }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -47344,7 +47355,7 @@ const UserInfo = ({ email , name , birthday  })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 7,
+                lineNumber: 19,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -47354,7 +47365,7 @@ const UserInfo = ({ email , name , birthday  })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 8,
+                lineNumber: 20,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -47364,12 +47375,13 @@ const UserInfo = ({ email , name , birthday  })=>{
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 9,
+                lineNumber: 21,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true);
 };
+_s(UserInfo, "l0nCqodPWuiGgcnCHidP90F0Gls=");
 _c = UserInfo;
 var _c;
 $RefreshReg$(_c, "UserInfo");
