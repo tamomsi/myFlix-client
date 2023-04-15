@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import UserInfo from "./user-info";
 import FavoriteMovies from "./favorite-movies";
+import UpdateUser from "./update-user";
 import "./profile-view.scss";
 
 export function ProfileView({ movies, onUpdateUserInfo }) {
@@ -81,40 +82,8 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
     <div>
       <UserInfo name={user.UserName} email={user.Email} />
       <FavoriteMovies favoriteMovieList={favoriteMovieList}/>
-
-      <form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
-        <h2>Want to change some info?</h2>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            type="text"
-            name="Username"
-            defaultValue={user.UserName}
-            onChange={(e) => handleUpdate(e)}
-          />
-        </Form.Group>
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="password"
-            name="Password"
-            defaultValue={user.Password}
-            onChange={(e) => handleUpdate(e)}
-          />
-        </Form.Group>
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email address:</Form.Label>
-          <Form.Control
-            type="email"
-            name="Email"
-            defaultValue={user.Email}
-            onChange={(e) => handleUpdate(e)}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Update
-        </Button>
-      </form>
+      <UpdateUser handleSubmit={handleSubmit} handleUpdate={handleUpdate}/>
+      
     </div>
   );
 }
