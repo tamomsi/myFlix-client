@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,6 +26,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/">Profile</Nav.Link>
           </Nav>
           {!loggedIn ? (
             <Nav className="ms-auto">

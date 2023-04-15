@@ -1,12 +1,10 @@
-import React from "react"
+import React from "react";
 import { Link } from "react-router-dom";
 
-export default FavoriteMovies;
-
-const FavoriteMovies({favoriteMovieList}) {
-    return (
-        <div>
-        <h2>Favorite Movies</h2>
+export const FavoriteMovies = ({ favoriteMovieList, removeFav }) => {
+  return (
+    <div>
+      <h2>Favorite Movies</h2>
       {favoriteMovieList.map((movie) => {
         return (
           <div key={movie._id}>
@@ -16,13 +14,13 @@ const FavoriteMovies({favoriteMovieList}) {
             </Link>
             <Button
               variant="secondary"
-              onClick={() => removeFav(movie._id)}>
+              onClick={() => removeFav(movie._id)}
+            >
               Remove from list
             </Button>
-            </div>
-          )
-       })
-       }
-     </div>
-    )
-}
+          </div>
+        );
+      })}
+    </div>
+  );
+};

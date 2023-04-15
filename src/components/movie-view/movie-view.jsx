@@ -8,6 +8,11 @@ export const MovieView = ({ movies }) => {
 
   const movie = movies.find((m) => m.id === movieId);
 
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+
+  };
+
   return (
     <div className="movie-view-container">
       <Card className="movie-card">
@@ -21,6 +26,13 @@ export const MovieView = ({ movies }) => {
           <Card.Text>Death Year: {movie.director.Death}</Card.Text>
           <Card.Text>Genre: {movie.genre.Name}</Card.Text>
           <Card.Text>Genre Description: {movie.genre.Description}</Card.Text>
+          <Button
+            className="favorite-button"
+            variant={isFavorite ? "danger" : "outline-danger"}
+            onClick={handleFavoriteClick}
+          >
+            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          </Button>
           <Link to={`/`}>
             <Button className="back-button" variant="primary">
               Back
