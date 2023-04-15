@@ -24,66 +24,42 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
       });
       const data = await response.json();
       setUser(data);
-    } catch (error) {
-      console.error('Failed to fetch user data:', error);
+    } catch (err) {
+      console.log(err);
     }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('/api/users', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify(user),
-      });
-      const data = await response.json();
-      onUpdateUserInfo(data);
-    } catch (error) {
-      console.error('Failed to update user info:', error);
-    }
-  };
-  
-
-  const removeFav = async (id) => {
-    try {
-      const response = await fetch(`/api/users/${user._id}/favorites/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      const data = await response.json();
-      setUser((prevUser) => ({
-        ...prevUser,
-        FavoriteMovies: data.FavoriteMovies,
-      }));
-    } catch (error) {
-      console.error('Failed to remove favorite movie:', error);
-    }
-  };
-
-  const handleUpdate = (e) => {
-    const { name, value } = e.target;
-    setUser((prevUser) => ({
-      ...prevUser,
-      [name]: value,
-    }));
   };
 
   useEffect(() => {
     getUser();
   }, []);
 
+  const handleUpdateUser = async (updatedUser) => {
+    try {
+      const response = await fetch(`/api/users/${user.Username}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify(updatedUser),
+      });
+      const data = await response.json();
+      setUser(data);
+      onUpdateUserInfo(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <div>
-      <UserInfo name={user.UserName} email={user.Email} />
-      <FavoriteMovies favoriteMovieList={favoriteMovieList}/>
-      <UpdateUser handleSubmit={handleSubmit} handleUpdate={handleUpdate}/>
-      
+    <div className="profile-view">
+      <h2 className="profile-title">Profile</h2>
+      <UserInfo user={user} />
+      <UpdateUser user={user} onUpdateUser={handleUpdateUser} />
+      <FavoriteMovies movies={favoriteMovieList} />
+      <Link to="/">
+        <Button className="back-button">Back to Movies</Button>
+      </Link>
     </div>
   );
 }
