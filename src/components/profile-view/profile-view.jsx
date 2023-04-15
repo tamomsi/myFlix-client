@@ -54,12 +54,18 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
   return (
     <div className="profile-view">
       <h2 className="profile-title">Profile</h2>
-      <UserInfo user={user} />
-      <UpdateUser user={user} onUpdateUser={handleUpdateUser} />
-      <FavoriteMovies movies={favoriteMovieList} />
-      <Link to="/">
-        <Button className="back-button">Back to Movies</Button>
-      </Link>
+      <Card>
+        <Card.Body>
+          <UserInfo user={user} />
+          <UpdateUser user={user} onUpdateUser={handleUpdateUser} />
+          <hr />
+          <FavoriteMovies movies={favoriteMovieList} />
+          <hr />
+          <Link to="/">
+            <Button variant="primary">Back to Movies</Button>
+          </Link>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
