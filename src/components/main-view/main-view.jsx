@@ -17,6 +17,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser || null);
   const [token, setToken] = useState(storedToken || null);
   const [movies, setMovies] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     if (!token) return;
@@ -46,11 +47,20 @@ export const MainView = () => {
     localStorage.clear(); // This will clear all the items in localStorage
   };
 
-  const handleAddToFavorites = (movieId) => {
-    const movieToAdd = movies.find((movie) => movie.id === movieId);
-    if (!favorites.some((movie) => movie.id === movieId)) {
-      setFavorites([...favorites, movieToAdd]);
-    }
+   const handleAddToFavorites = (movieId) => {
+  const movieToAdd = movies.find((movie) => movie.id === movieId);
+  if (!favorites.some((movie) => movie.id === movieId)) {
+    setFavorites([...favorites, movieToAdd]);
+    fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+  }
   };
 
   const handleFavoriteClick = (movieId) => {

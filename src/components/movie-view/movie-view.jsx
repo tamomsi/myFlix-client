@@ -7,10 +7,11 @@ export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
 
   const movie = movies.find((m) => m.id === movieId);
+  
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
-
   };
 
   return (
