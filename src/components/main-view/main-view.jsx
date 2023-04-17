@@ -64,6 +64,20 @@ export const MainView = () => {
   }
   };
 
+  const handleRemoveFromFavorites = (movieId) => {
+    const newFavorites = favorites.filter((movie) => movie.id !== movieId);
+    setFavorites(newFavorites);
+    fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+  };
+
   const handleFavoriteClick = (movieId) => {
     const movieToAdd = movies.find((movie) => movie.id === movieId);
     if (!favorites.some((movie) => movie.id === movieId)) {
