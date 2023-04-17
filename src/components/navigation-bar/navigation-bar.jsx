@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { LoginView } from "../login-view/login-view";
-import { SignupView } from "../signup-view/signup-view";
-import { ProfileView } from "../profile-view/profile-view";
+import { Navbar, Container, Nav } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,24 +27,25 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
               Home
             </Nav.Link>
             {loggedIn && (
-              <Nav.Link as={Link} to="/profile">
+              <Nav.Link as={Link} to={`/users/${user?.UserName}`}>
                 Profile
               </Nav.Link>
             )}
+            {!loggedIn && (
+              <>
+                <Nav.Link as={Link} to="/signup">
+                  Sign up
+                </Nav.Link>
+                <Nav.Link as={Link} to="/login">
+                  Log in
+                </Nav.Link>
+              </>
+            )}
           </Nav>
-          {!loggedIn ? (
-            <Nav className="ms-auto">
-              <Nav.Link as={Link} to="/login">
-                Login
-              </Nav.Link>
-              <Nav.Link as={Link} to="/signup">
-                Signup
-              </Nav.Link>
-            </Nav>
-          ) : (
-            <Nav className="ms-auto">
-              <Button onClick={onLoggedOut}>Logout</Button>
-            </Nav>
+          {loggedIn && (
+            <Button variant="outline-secondary" onClick={onLoggedOut}>
+              Log out
+            </Button>
           )}
         </Navbar.Collapse>
       </Container>
