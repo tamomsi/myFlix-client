@@ -15,7 +15,7 @@ export const MovieCard = ({ movie, onMovieClick, onAddToFavorites }) => {
 
   const handleAddToFavorites = (event) => {
     event.preventDefault();
-    if (!onAddToFavorites.some((m) => m.id === movie.id)) {
+    if (Array.isArray(onAddToFavorites) && onAddToFavorites.some((m) => m.id === movie.id)) {
       onAddToFavorites(movie);
       setIsFavorite(true);
     }

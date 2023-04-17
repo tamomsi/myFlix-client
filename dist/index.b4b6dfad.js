@@ -6043,7 +6043,7 @@ const MovieCard = ({ movie , onMovieClick , onAddToFavorites  })=>{
     const [isFavorite, setIsFavorite] = (0, _react.useState)(false);
     const handleAddToFavorites = (event)=>{
         event.preventDefault();
-        if (!onAddToFavorites.some((m)=>m.id === movie.id)) {
+        if (Array.isArray(onAddToFavorites) && onAddToFavorites.some((m)=>m.id === movie.id)) {
             onAddToFavorites(movie);
             setIsFavorite(true);
         }
@@ -47257,12 +47257,12 @@ var _s = $RefreshSig$();
 function ProfileView({ movies , onUpdateUserInfo  }) {
     _s();
     const [user, setUser] = (0, _react.useState)({});
-    const favoriteMovieList = movies.filter((movie)=>{
+    const favoriteMovieList = Array.isArray(movies) && movies.filter((movie)=>{
         return user.FavoriteMovies.includes(movie._id);
     });
     const getUser = async ()=>{
         try {
-            const response = await fetch("/api/users", {
+            const response = await fetch("/users", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -47278,7 +47278,7 @@ function ProfileView({ movies , onUpdateUserInfo  }) {
     }, []);
     const handleUpdateUser = async (updatedUser)=>{
         try {
-            const response = await fetch(`/api/users/${user.Username}`, {
+            const response = await fetch(`/users/${user?.UserName}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

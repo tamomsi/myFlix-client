@@ -11,13 +11,13 @@ import "./profile-view.scss";
 export function ProfileView({ movies, onUpdateUserInfo }) {
   const [user, setUser] = useState({});
 
-  const favoriteMovieList = movies.filter((movie) => {
+  const favoriteMovieList = Array.isArray(movies) && movies.filter((movie) => {
     return user.FavoriteMovies.includes(movie._id);
   });
-
+  
   const getUser = async () => {
     try {
-      const response = await fetch('/api/users', {
+      const response = await fetch('/users', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -35,7 +35,7 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
 
   const handleUpdateUser = async (updatedUser) => {
     try {
-      const response = await fetch(`/api/users/${user.Username}`, {
+      const response = await fetch(`/users/${user?.UserName}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
