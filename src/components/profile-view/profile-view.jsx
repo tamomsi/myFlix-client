@@ -71,7 +71,7 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
 
   return (
     <div className="profile-view">
-      <h2 className="profile-title">Profile</h2>
+      <h1 className="profile-title">Profile</h1>
       {user.UserName ? (
         <Card className="profile-card">
           <Card.Body>

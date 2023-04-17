@@ -47368,7 +47368,7 @@ function ProfileView({ movies , onUpdateUserInfo  }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "profile-view",
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 className: "profile-title",
                 children: "Profile"
             }, void 0, false, {
