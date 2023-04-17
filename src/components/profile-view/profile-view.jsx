@@ -50,6 +50,27 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
 
   const [favorites, setFavorites] = useState([]);
 
+  const handleAddFavorite = (movieId) => {
+    const movieToAdd = movies.find((movie) => movie.id === movieId);
+    if (!favorites.some((movie) => movie.id === movieId)) {
+      setFavorites([...favorites, movieToAdd]);
+      axios
+        .post(
+          `https://tamarflix.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+  };  
+
   return (
     <div className="profile-view">
       <h1 className="profile-title">Profile</h1>
