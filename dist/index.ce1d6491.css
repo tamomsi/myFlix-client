@@ -12040,6 +12040,14 @@ textarea.form-control-lg {
   overflow-y: auto;
 }
 
+.profile-card {
+  border: 1px solid #ddd;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
 
+.back-button {
+  margin-top: 1rem;
+}
 
 /*# sourceMappingURL=index.ce1d6491.css.map */
