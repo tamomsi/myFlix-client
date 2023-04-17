@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import "./navigation-bar.scss";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -15,7 +16,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
   }, [user]);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="custom-navbar" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
           Movies App

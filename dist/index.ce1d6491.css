@@ -12040,6 +12040,29 @@ textarea.form-control-lg {
   overflow-y: auto;
 }
 
+.custom-navbar {
+  background-color: #2f4f4f;
+  font-size: 18px;
+}
+
+.custom-navbar .navbar-brand, .custom-navbar .nav-link {
+  color: #7fff00;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #fff5ee;
+}
+
+.custom-navbar .btn-outline-secondary {
+  color: #7fff00;
+  border-color: #fff5ee;
+}
+
+.custom-navbar .btn-outline-secondary:hover {
+  color: #696969;
+  background-color: #7fff00;
+}
+
 .profile-card {
   border: 1px solid #ddd;
   margin-bottom: 2rem;
