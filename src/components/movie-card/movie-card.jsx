@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import axios from 'axios'; 
 import './movie-card.scss';
 
-export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites }) => {
+export const MovieCard = ({ movie, onAddToFavorites }) => {
   const maxDescriptionLength = 100;
   const truncatedDescription =
     movie.description.length > maxDescriptionLength
@@ -20,27 +19,10 @@ export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites }) =>
     setIsFavorite(true);
   };
 
-  const handleRemoveFromFavorites = (event) => {
-    event.preventDefault();
-    onRemoveFromFavorites(movie);
-    setIsFavorite(false);
-    axios.delete(`https://myflixdb247.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movie._id}`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-    })
-    .then(response => {
-      console.log(response);
-      alert('Movie successfully removed from favorites list.');
-    })
-    .catch(error => {
-      console.log(error);
-      alert('There was an error removing the movie from favorites list.');
-    });
-  };  
-
-  const handleFavoriteClick = (event) => { //add a new function to handle favorite button click
+  const handleFavoriteClick = (event) => {
     event.preventDefault();
     if (isFavorite) {
-      handleRemoveFromFavorites(event);
+      setIsFavorite(false);
     } else {
       handleAddToFavorites(event);
     }
@@ -91,5 +73,4 @@ MovieCard.propTypes = {
     }).isRequired,
   }).isRequired,
   onAddToFavorites: PropTypes.func.isRequired,
-  onRemoveFromFavorites: PropTypes.func.isRequired,
 };
