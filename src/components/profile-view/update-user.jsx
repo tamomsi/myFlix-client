@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, } from "react";
 import { Form, Button } from "react-bootstrap";
 
-export default function UpdateUser({ user, handleSubmit, handleDelete }) {
+export default function UpdateUser({ user, handleSubmit }) {
   const [updatedUser, setUpdatedUser] = useState(user);
 
   const handleUpdate = (e) => {
@@ -50,9 +50,6 @@ export default function UpdateUser({ user, handleSubmit, handleDelete }) {
       </Form.Group>
       <Button variant="primary" type="submit">
         Update
-      </Button>
-      <Button variant="danger" onClick={handleDelete}>
-        Delete Account
       </Button>
     </form>
   );

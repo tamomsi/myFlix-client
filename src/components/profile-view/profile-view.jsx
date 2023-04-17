@@ -8,28 +8,6 @@ import FavoriteMovies from "./favorite-movies";
 import UpdateUser from "./update-user";
 import "./profile-view.scss";
 
-function FavoriteMovies({ userFavoriteMovies }) {
-  return (
-    <>
-      <h3>Favorite Movies</h3>
-      {userFavoriteMovies && userFavoriteMovies.length > 0 ? (
-        <div className="favorite-movies-container">
-          {userFavoriteMovies.map((movie) => (
-            <Card className="profile-card" key={movie._id}>
-              <Card.Img variant="top" src={movie.image} alt={movie.title} />
-              <Card.Body>
-                <Card.Title>{movie.title}</Card.Title>
-              </Card.Body>
-            </Card>
-          ))}
-        </div>
-      ) : (
-        <p>You have not added any favorite movies yet.</p>
-      )}
-    </>
-  );
-}
-
 export function ProfileView({ movies, onUpdateUserInfo }) {
   const [user, setUser] = useState({});
 
@@ -78,7 +56,7 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
             <UserInfo user={user} />
             <UpdateUser user={user} onUpdateUser={handleUpdateUser} />
             <hr />
-            {user.FavoriteMovies ? (
+            {user.FavoriteMovies && user.FavoriteMovies.length > 0 ? (
               <FavoriteMovies movies={movies} userFavoriteMovies={user.FavoriteMovies} />
             ) : (
               <p>No favorite movies yet.</p>
@@ -90,7 +68,7 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
           </Card.Body>
         </Card>
       ) : (
-        <p>Loading...</p>
+        <p>No user information found.</p>
       )}
     </div>
   );

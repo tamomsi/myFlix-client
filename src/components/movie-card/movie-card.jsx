@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
-export const MovieCard = ({ movie, onAddToFavorites }) => {
+export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites }) => {
   const maxDescriptionLength = 100;
   const truncatedDescription =
     movie.description.length > maxDescriptionLength
@@ -21,6 +21,25 @@ export const MovieCard = ({ movie, onAddToFavorites }) => {
     }
   };
 
+  const handleRemoveFromFavorites = (event) => {
+    event.preventDefault();
+    if (Array.isArray(onRemoveFromFavorites) && onRemoveFromFavorites.some((m) => m.id === movie.id)) {
+      onRemoveFromFavorites(movie);
+      setIsFavorite(false);
+      axios.delete(`https://myflixdb247.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movie._id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(response => {
+        console.log(response);
+        alert('Movie successfully removed from favorites list.');
+      })
+      .catch(error => {
+        console.log(error);
+        alert('There was an error removing the movie from favorites list.');
+      });
+    }
+  };  
+
   return (
     <Card className="h-100">
       <Card.Img
@@ -36,15 +55,23 @@ export const MovieCard = ({ movie, onAddToFavorites }) => {
           <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
             <Button variant="link">Open</Button>
           </Link>
-          <Button
-            variant="primary"
-            className={`favorite-button ${
-              isFavorite ? 'favorited' : 'not-favorited'
-            }`}
-            onClick={handleAddToFavorites}
-          >
-            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-          </Button>
+          {isFavorite ? (
+            <Button
+              variant="danger"
+              className="favorite-button"
+              onClick={handleRemoveFromFavorites}
+            >
+              Remove from Favorites
+            </Button>
+          ) : (
+            <Button
+              variant="primary"
+              className="favorite-button"
+              onClick={handleAddToFavorites}
+            >
+              Add to Favorites
+            </Button>
+          )}
         </div>
       </Card.Body>
     </Card>
@@ -68,4 +95,5 @@ MovieCard.propTypes = {
     }).isRequired,
   }).isRequired,
   onAddToFavorites: PropTypes.func.isRequired,
+  onRemoveFromFavorites: PropTypes.func.isRequired,
 };
