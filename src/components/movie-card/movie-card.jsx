@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
-export const MovieCard = ({ movie, onMovieClick, onAddToFavorites }) => {
+export const MovieCard = ({ movie, onAddToFavorites }) => {
   const maxDescriptionLength = 100;
   const truncatedDescription =
     movie.description.length > maxDescriptionLength

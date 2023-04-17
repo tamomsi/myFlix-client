@@ -6045,7 +6045,7 @@ var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
 var _s = $RefreshSig$();
-const MovieCard = ({ movie , onMovieClick , onAddToFavorites  })=>{
+const MovieCard = ({ movie , onAddToFavorites  })=>{
     _s();
     const maxDescriptionLength = 100;
     const truncatedDescription = movie.description.length > maxDescriptionLength ? `${movie.description.substring(0, maxDescriptionLength)}...` : movie.description;
@@ -47264,6 +47264,63 @@ var _updateUser = require("./update-user");
 var _updateUserDefault = parcelHelpers.interopDefault(_updateUser);
 var _profileViewScss = require("./profile-view.scss");
 var _s = $RefreshSig$();
+function FavoriteMovies({ favoriteMovieList  }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                children: "Favorite Movies"
+            }, void 0, false, {
+                fileName: "src/components/profile-view/profile-view.jsx",
+                lineNumber: 14,
+                columnNumber: 7
+            }, this),
+            favoriteMovieList && favoriteMovieList.length > 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "favorite-movies-container",
+                children: favoriteMovieList.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Img, {
+                                variant: "top",
+                                src: movie.image,
+                                alt: movie.title
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 19,
+                                columnNumber: 15
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Body, {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Title, {
+                                    children: movie.title
+                                }, void 0, false, {
+                                    fileName: "src/components/profile-view/profile-view.jsx",
+                                    lineNumber: 21,
+                                    columnNumber: 17
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/profile-view.jsx",
+                                lineNumber: 20,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, movie._id, true, {
+                        fileName: "src/components/profile-view/profile-view.jsx",
+                        lineNumber: 18,
+                        columnNumber: 13
+                    }, this))
+            }, void 0, false, {
+                fileName: "src/components/profile-view/profile-view.jsx",
+                lineNumber: 16,
+                columnNumber: 9
+            }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "You have not added any favorite movies yet."
+            }, void 0, false, {
+                fileName: "src/components/profile-view/profile-view.jsx",
+                lineNumber: 27,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true);
+}
+_c = (0, _favoriteMoviesDefault.default);
 function ProfileView({ movies , onUpdateUserInfo  }) {
     _s();
     const [user, setUser] = (0, _react.useState)({});
@@ -47311,43 +47368,49 @@ function ProfileView({ movies , onUpdateUserInfo  }) {
                 children: "Profile"
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 56,
+                lineNumber: 78,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+            user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Body, {
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfoDefault.default), {
                             user: user
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 59,
-                            columnNumber: 11
+                            lineNumber: 82,
+                            columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUserDefault.default), {
                             user: user,
                             onUpdateUser: handleUpdateUser
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 60,
-                            columnNumber: 11
+                            lineNumber: 83,
+                            columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 61,
-                            columnNumber: 11
+                            lineNumber: 84,
+                            columnNumber: 13
                         }, this),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMoviesDefault.default), {
+                        favoriteMovieList.length ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMoviesDefault.default), {
                             favoriteMovieList: favoriteMovieList
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 62,
-                            columnNumber: 11
+                            lineNumber: 86,
+                            columnNumber: 15
+                        }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            children: "No favorite movies yet."
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/profile-view.jsx",
+                            lineNumber: 88,
+                            columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 63,
-                            columnNumber: 11
+                            lineNumber: 90,
+                            columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             to: "/",
@@ -47356,36 +47419,43 @@ function ProfileView({ movies , onUpdateUserInfo  }) {
                                 children: "Back to Movies"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 65,
-                                columnNumber: 13
+                                lineNumber: 92,
+                                columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 64,
-                            columnNumber: 11
+                            lineNumber: 91,
+                            columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 58,
-                    columnNumber: 9
+                    lineNumber: 81,
+                    columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 57,
-                columnNumber: 7
+                lineNumber: 80,
+                columnNumber: 9
+            }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "Loading..."
+            }, void 0, false, {
+                fileName: "src/components/profile-view/profile-view.jsx",
+                lineNumber: 97,
+                columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 55,
+        lineNumber: 77,
         columnNumber: 5
     }, this);
 }
 _s(ProfileView, "l0nCqodPWuiGgcnCHidP90F0Gls=");
-_c = ProfileView;
-var _c;
-$RefreshReg$(_c, "ProfileView");
+_c1 = ProfileView;
+var _c, _c1;
+$RefreshReg$(_c, "FavoriteMovies");
+$RefreshReg$(_c1, "ProfileView");
 
   $parcel$ReactRefreshHelpers$3c12.postlude(module);
 } finally {
