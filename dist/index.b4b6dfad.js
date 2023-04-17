@@ -5867,8 +5867,33 @@ const MainView = ()=>{
         localStorage.clear(); // This will clear all the items in localStorage
     };
     const handleAddToFavorites = (movieId)=>{
+        console.log("movieId:", movieId);
+        console.log("movies:", movies);
+        if (movies.length === 0) {
+            // If movies is empty, fetch the movies from the API again
+            fetch("https://tamarflix.herokuapp.com/movies", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((response)=>response.json()).then((movies)=>{
+                const moviesFromApi = movies.map((movie)=>({
+                        id: movie._id,
+                        title: movie.Title,
+                        image: movie.ImagePath,
+                        description: movie.Description,
+                        genre: movie.Genre,
+                        director: movie.Director
+                    }));
+                setMovies(moviesFromApi);
+            }).catch((error)=>{
+                console.log(error);
+            });
+            return;
+        }
         const movieToAdd = movies.find((movie)=>movie.id === movieId);
-        if (!favorites.some((movie)=>movie.id === movieId)) {
+        console.log("movieToAdd:", movieToAdd);
+        if (favorites && favorites.some((movie)=>movie.id === movieId)) console.log(`Movie with id ${movieId} is already in favorites.`);
+        else if (movieToAdd) {
             setFavorites([
                 ...favorites,
                 movieToAdd
@@ -5876,10 +5901,16 @@ const MainView = ()=>{
             fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem("user")}/movies/${movieId}`, {
                 method: "POST",
                 headers: {
-                    "Authorization": `Bearer ${token}`
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-            }).then((response)=>response.json()).then((data)=>console.log(data)).catch((error)=>console.log(error));
-        }
+            }).then((response)=>response.json()).then((data)=>{
+                console.log("Success:", data);
+                alert("Movie successfully added to favorites list.");
+            }).catch((error)=>{
+                console.error("Error:", error);
+                alert("There was an error adding the movie to favorites list.");
+            });
+        } else alert("This movie is already in your favorites list.");
     };
     const handleRemoveFromFavorites = (movieId)=>{
         const newFavorites = favorites.filter((movie)=>movie.id !== movieId);
@@ -5913,7 +5944,7 @@ const MainView = ()=>{
                 onLoggedOut: handleLogout
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 98,
+                lineNumber: 134,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -5976,7 +6007,7 @@ const MainView = ()=>{
                             }, void 0, true)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 101,
+                            lineNumber: 137,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -5986,7 +6017,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 141,
+                            lineNumber: 177,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -5996,7 +6027,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 145,
+                            lineNumber: 181,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6006,29 +6037,29 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 149,
+                            lineNumber: 185,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 100,
+                    lineNumber: 136,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 99,
+                lineNumber: 135,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 152,
+                lineNumber: 188,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 97,
+        lineNumber: 133,
         columnNumber: 5
     }, undefined);
 };
@@ -6059,7 +6090,7 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
-var _axios = require("axios"); //import axios library
+var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _movieCardScss = require("./movie-card.scss");
 var _s = $RefreshSig$();
@@ -6070,7 +6101,7 @@ const MovieCard = ({ movie , onAddToFavorites , onRemoveFromFavorites  })=>{
     const [isFavorite, setIsFavorite] = (0, _react.useState)(false);
     const handleAddToFavorites = (event)=>{
         event.preventDefault();
-        onAddToFavorites(movie);
+        onAddToFavorites(movie.id);
         setIsFavorite(true);
     };
     const handleRemoveFromFavorites = (event)=>{

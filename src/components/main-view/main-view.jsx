@@ -48,22 +48,58 @@ export const MainView = () => {
     localStorage.clear(); // This will clear all the items in localStorage
   };
 
-   const handleAddToFavorites = (movieId) => {
-  const movieToAdd = movies.find((movie) => movie.id === movieId);
-  if (!favorites.some((movie) => movie.id === movieId)) {
-    setFavorites([...favorites, movieToAdd]);
-    fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
-  }
-  };
-
+  const handleAddToFavorites = (movieId) => {
+    console.log('movieId:', movieId);
+    console.log('movies:', movies);
+  
+    if (movies.length === 0) {
+      // If movies is empty, fetch the movies from the API again
+      fetch("https://tamarflix.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((response) => response.json())
+        .then((movies) => {
+          const moviesFromApi = movies.map((movie) => ({
+            id: movie._id,
+            title: movie.Title,
+            image: movie.ImagePath,
+            description: movie.Description,
+            genre: movie.Genre,
+            director: movie.Director,
+          }));
+          setMovies(moviesFromApi);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      return;
+    }
+  
+    const movieToAdd = movies.find((movie) => movie.id === movieId);
+    console.log('movieToAdd:', movieToAdd);
+  
+    if (favorites && favorites.some((movie) => movie.id === movieId)) {
+        console.log(`Movie with id ${movieId} is already in favorites.`);
+      } else if (movieToAdd) {
+      setFavorites([...favorites, movieToAdd]);
+      fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          alert('Movie successfully added to favorites list.');
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          alert('There was an error adding the movie to favorites list.');
+        });
+    } else {
+      alert('This movie is already in your favorites list.');
+    }
+  };  
+  
   const handleRemoveFromFavorites = (movieId) => {
     const newFavorites = favorites.filter((movie) => movie.id !== movieId);
     setFavorites(newFavorites);

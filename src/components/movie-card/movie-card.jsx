@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import axios from 'axios'; //import axios library
+import axios from 'axios'; 
 import './movie-card.scss';
 
 export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites }) => {
@@ -16,7 +16,7 @@ export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites }) =>
 
   const handleAddToFavorites = (event) => {
     event.preventDefault();
-    onAddToFavorites(movie); 
+    onAddToFavorites(movie.id); 
     setIsFavorite(true);
   };
 
@@ -35,7 +35,7 @@ export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites }) =>
       console.log(error);
       alert('There was an error removing the movie from favorites list.');
     });
-  };
+  };  
 
   const handleFavoriteClick = (event) => { //add a new function to handle favorite button click
     event.preventDefault();
