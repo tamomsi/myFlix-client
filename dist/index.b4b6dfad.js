@@ -47277,6 +47277,7 @@ function FavoriteMovies({ userFavoriteMovies  }) {
             userFavoriteMovies && userFavoriteMovies.length > 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "favorite-movies-container",
                 children: userFavoriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                        className: "profile-card",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Img, {
                                 variant: "top",
@@ -47369,6 +47370,7 @@ function ProfileView({ movies , onUpdateUserInfo  }) {
                 columnNumber: 7
             }, this),
             user.UserName ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                className: "profile-card",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Body, {
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfoDefault.default), {
@@ -47413,6 +47415,7 @@ function ProfileView({ movies , onUpdateUserInfo  }) {
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             to: "/",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                className: "back-button",
                                 variant: "primary",
                                 children: "Back to Movies"
                             }, void 0, false, {

@@ -15,7 +15,7 @@ function FavoriteMovies({ userFavoriteMovies }) {
       {userFavoriteMovies && userFavoriteMovies.length > 0 ? (
         <div className="favorite-movies-container">
           {userFavoriteMovies.map((movie) => (
-            <Card key={movie._id}>
+            <Card className="profile-card" key={movie._id}>
               <Card.Img variant="top" src={movie.image} alt={movie.title} />
               <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
@@ -73,7 +73,7 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
     <div className="profile-view">
       <h2 className="profile-title">Profile</h2>
       {user.UserName ? (
-        <Card>
+        <Card className="profile-card">
           <Card.Body>
             <UserInfo user={user} />
             <UpdateUser user={user} onUpdateUser={handleUpdateUser} />
@@ -85,7 +85,7 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
             )}
             <hr />
             <Link to="/">
-              <Button variant="primary">Back to Movies</Button>
+              <Button className="back-button" variant="primary">Back to Movies</Button>
             </Link>
           </Card.Body>
         </Card>
