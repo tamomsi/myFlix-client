@@ -13,17 +13,18 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
 
   const getUser = async () => {
     try {
-      const response = await fetch('/users', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      const data = await response.json();
-      setUser(data);
-    } catch (err) {
-      console.log(err);
+      const response = await axios.get(
+        `https://tamarflix.herokuapp.com/users/${user.Username}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      setUser(response.data);
+      setFavorites(response.data.FavoriteMovies);
+    } catch (e) {
+      console.log(e);
     }
-  };
+  };  
 
   useEffect(() => {
     getUser();
@@ -46,6 +47,8 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
       console.log(err);
     }
   };
+
+  const [favorites, setFavorites] = useState([]);
 
   return (
     <div className="profile-view">
