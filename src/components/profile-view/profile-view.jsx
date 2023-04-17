@@ -8,13 +8,13 @@ import FavoriteMovies from "./favorite-movies";
 import UpdateUser from "./update-user";
 import "./profile-view.scss";
 
-function FavoriteMovies({ favoriteMovieList }) {
+function FavoriteMovies({ userFavoriteMovies }) {
   return (
     <>
       <h3>Favorite Movies</h3>
-      {favoriteMovieList && favoriteMovieList.length > 0 ? (
+      {userFavoriteMovies && userFavoriteMovies.length > 0 ? (
         <div className="favorite-movies-container">
-          {favoriteMovieList.map((movie) => (
+          {userFavoriteMovies.map((movie) => (
             <Card key={movie._id}>
               <Card.Img variant="top" src={movie.image} alt={movie.title} />
               <Card.Body>
@@ -32,10 +32,6 @@ function FavoriteMovies({ favoriteMovieList }) {
 
 export function ProfileView({ movies, onUpdateUserInfo }) {
   const [user, setUser] = useState({});
-
-  const favoriteMovieList = Array.isArray(movies) && movies.filter((movie) => {
-    return user.FavoriteMovies.includes(movie._id);
-  });
 
   const getUser = async () => {
     try {
@@ -76,14 +72,14 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
   return (
     <div className="profile-view">
       <h2 className="profile-title">Profile</h2>
-      {user ? (
+      {user.UserName ? (
         <Card>
           <Card.Body>
             <UserInfo user={user} />
             <UpdateUser user={user} onUpdateUser={handleUpdateUser} />
             <hr />
-            {favoriteMovieList.length ? (
-              <FavoriteMovies favoriteMovieList={favoriteMovieList} />
+            {user.FavoriteMovies ? (
+              <FavoriteMovies movies={movies} userFavoriteMovies={user.FavoriteMovies} />
             ) : (
               <p>No favorite movies yet.</p>
             )}
