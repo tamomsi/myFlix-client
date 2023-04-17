@@ -47479,26 +47479,28 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
-const FavoriteMovies = ({ favoriteMovieList , removeFav  })=>{
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+const FavoriteMovies = ({ favoriteMovieList , removeFav , movies  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                 children: "Favorite Movies"
             }, void 0, false, {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                lineNumber: 7,
+                lineNumber: 8,
                 columnNumber: 7
             }, undefined),
-            favoriteMovieList.map((movie)=>{
-                return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            movies.map((movie)=>{
+                if (favoriteMovieList.includes(movie._id)) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                             src: movie.ImagePath,
                             alt: ""
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 11,
-                            columnNumber: 13
+                            lineNumber: 13,
+                            columnNumber: 15
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             to: `/movies/${movie._id}`,
@@ -47506,34 +47508,35 @@ const FavoriteMovies = ({ favoriteMovieList , removeFav  })=>{
                                 children: movie.Title
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                                lineNumber: 13,
-                                columnNumber: 15
+                                lineNumber: 15,
+                                columnNumber: 17
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 12,
-                            columnNumber: 13
+                            lineNumber: 14,
+                            columnNumber: 15
                         }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                             variant: "secondary",
                             onClick: ()=>removeFav(movie._id),
                             children: "Remove from list"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 15,
-                            columnNumber: 13
+                            lineNumber: 17,
+                            columnNumber: 15
                         }, undefined)
                     ]
                 }, movie._id, true, {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 10,
-                    columnNumber: 11
+                    lineNumber: 12,
+                    columnNumber: 13
                 }, undefined);
+                return null;
             })
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/favorite-movies.jsx",
-        lineNumber: 6,
+        lineNumber: 7,
         columnNumber: 5
     }, undefined);
 };
@@ -47546,7 +47549,7 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC"}],"2SBwg":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","react-bootstrap/Button":"aPzUt"}],"2SBwg":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$95d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
