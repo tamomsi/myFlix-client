@@ -71,6 +71,23 @@ export function ProfileView({ movies, onUpdateUserInfo }) {
     }
   };  
 
+  const handleRemoveFavorite = (movieId) => {
+    setFavorites(favorites.filter((movie) => movie.id !== movieId));
+    axios
+      .delete(
+        `https://tamarflix.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };  
+
   return (
     <div className="profile-view">
       <h1 className="profile-title">Profile</h1>
