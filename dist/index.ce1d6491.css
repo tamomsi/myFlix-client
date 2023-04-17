@@ -12042,6 +12042,7 @@ textarea.form-control-lg {
 
 .custom-navbar {
   background-color: #2f4f4f;
+  margin-bottom: 5%;
   font-size: 18px;
 }
 
@@ -12071,6 +12072,17 @@ textarea.form-control-lg {
 
 .back-button {
   margin-top: 1rem;
+}
+
+.my-footer-text {
+  color: #7fff00;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  background-color: #2f4f4f;
+  padding: 20px;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

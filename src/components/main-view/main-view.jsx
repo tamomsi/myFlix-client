@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { Footer } from "../navigation-bar/footer";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -134,6 +135,7 @@ export const MainView = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Row>
+      <Footer/>
     </BrowserRouter>
   );
 };
