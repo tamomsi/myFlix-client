@@ -52,43 +52,23 @@ export const MainView = () => {
     console.log('movieId:', movieId);
     console.log('movies:', movies);
   
-    if (movies.length === 0) {
-      // If movies is empty, fetch the movies from the API again
-      fetch("https://tamarflix.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((response) => response.json())
-        .then((movies) => {
-          const moviesFromApi = movies.map((movie) => ({
-            id: movie._id,
-            title: movie.Title,
-            image: movie.ImagePath,
-            description: movie.Description,
-            genre: movie.Genre,
-            director: movie.Director,
-          }));
-          setMovies(moviesFromApi);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      return;
-    }
-  
     const movieToAdd = movies.find((movie) => movie.id === movieId);
     console.log('movieToAdd:', movieToAdd);
+    const user =JSON.parse(localStorage.getItem('user'))
   
     if (favorites && favorites.some((movie) => movie.id === movieId)) {
         console.log(`Movie with id ${movieId} is already in favorites.`);
       } else if (movieToAdd) {
       setFavorites([...favorites, movieToAdd]);
-      fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
+      fetch(`https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
         .then((response) => response.json())
         .then((data) => {
           console.log('Success:', data);
+          let newUserData = JSON.stringify(data);
+          localStorage.setItem('user', newUserData);
           alert('Movie successfully added to favorites list.');
         })
         .catch((error) => {
@@ -100,35 +80,14 @@ export const MainView = () => {
     }
   };  
   
-  const handleRemoveFromFavorites = (movieId) => {
-    const newFavorites = favorites.filter((movie) => movie.id !== movieId);
-    setFavorites(newFavorites);
-    fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
-  };
+  function handleRemoveFromFavorites(movieId) {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    const newFavorites = userData.favorites.filter((movie) => movie.id !== id);
+    const newUserData = JSON.stringify({ ...userData, favorites: newFavorites });
+    localStorage.setItem('user', newUserData);
+    setUser(JSON.parse(newUserData));
+  }
 
-  const handleFavoriteClick = (movieId) => {
-    const movieToAdd = movies.find((movie) => movie.id === movieId);
-    if (!favorites.some((movie) => movie.id === movieId)) {
-      setFavorites([...favorites, movieToAdd]);
-      fetch(`https://tamarflix.herokuapp.com/users/${localStorage.getItem('user')}/movies/${movieId}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
-    }
-  } 
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={handleLogout}/>
@@ -180,7 +139,7 @@ export const MainView = () => {
           />
           <Route 
             path="/users/:UserName"
-            element={<ProfileView user={user} />}
+            element={<ProfileView user={user} movies={movies}/>}
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

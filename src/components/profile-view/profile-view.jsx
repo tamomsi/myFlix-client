@@ -4,9 +4,8 @@ import { UserInfo } from "./user-info";
 import { FavoriteMovies } from "./favorite-movies";
 import UpdateUser from "./update-user";
 
-export const ProfileView = () => {
-  const [user, setUser] = useState({});
-  const [movies, setMovies] = useState([]);
+export const ProfileView = ({movies }) => {
+  const [user, setUser] = useState({movies});
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -107,7 +106,6 @@ export const ProfileView = () => {
           <Col md={6}>
             <FavoriteMovies
               movies={movies}
-              favorites={favorites}
               onAddFavorite={handleAddFavorite}
               onRemoveFavorite={handleRemoveFavorite}
             />
