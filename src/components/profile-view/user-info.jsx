@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { FavoriteMovies } from "./favorite-movies";
+import { Card, Form, Button } from 'react-bootstrap';
 
-export const UserInfo = ({ email, name, birthday }) => {
-  const [user, setUser] = useState({});
-  const [movies, setMovies] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+export const UserInfo = ({ email, name, birthday, onUserChange }) => {
+  const [user, setUser] = useState({ email, name, birthday });
 
   useEffect(() => {
     fetch("/users")
@@ -20,29 +20,7 @@ export const UserInfo = ({ email, name, birthday }) => {
       .catch(error => {
         console.log(error);
       });
-
-    fetch("/movies")
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(data => {
-        setMovies(data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }, []);
-
-  const handleAddFavorite = (movieId) => {
-    setFavorites(prevFavorites => [...prevFavorites, movieId]);
-  }
-
-  const handleRemoveFavorite = (movieId) => {
-    setFavorites(prevFavorites => prevFavorites.filter(id => id !== movieId));
-  }
 
   const getUser = () => {
     fetch(`/users/${user.id}`, {
@@ -64,6 +42,7 @@ export const UserInfo = ({ email, name, birthday }) => {
       })
       .then(data => {
         setUser(data);
+        onUserChange(data);
       })
       .catch(error => {
         console.log(error);
@@ -74,30 +53,31 @@ export const UserInfo = ({ email, name, birthday }) => {
     setUser({ ...user, [event.target.name]: event.target.value });
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    getUser();
+  }
+
   return (
-    <>
-      <p>User: {name}</p>
-      <p>Email: {email}</p>
-      <p>Birthday: {birthday}</p>
       <div>
-        <label htmlFor="email">Email:</label>
-        <input type="text" name="email" value={user.email || ""} onChange={handleInputChange} />
+        <h2>User Info</h2>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formEmail">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control type="email" name="email" value={user.email} onChange={handleInputChange} />
+          </Form.Group>
+          <Form.Group controlId="formName">
+            <Form.Label>Name:</Form.Label>
+            <Form.Control type="text" name="name" value={user.name} onChange={handleInputChange} />
+          </Form.Group>
+          <Form.Group controlId="formBirthday">
+            <Form.Label>Birthday:</Form.Label>
+            <Form.Control type="date" name="birthday" value={user.birthday} onChange={handleInputChange} />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
       </div>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" name="name" value={user.name || ""} onChange={handleInputChange} />
-      </div>
-      <div>
-        <label htmlFor="birthday">Birthday:</label>
-        <input type="text" name="birthday" value={user.birthday || ""} onChange={handleInputChange} />
-      </div>
-      <button onClick={getUser}>Update User Info</button>
-      <FavoriteMovies
-        movies={movies}
-        favorites={favorites}
-        onAddFavorite={handleAddFavorite}
-        onRemoveFavorite={handleRemoveFavorite}
-      />
-    </>
   );
-};
+}

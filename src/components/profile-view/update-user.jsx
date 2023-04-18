@@ -30,7 +30,7 @@ export default function UpdateUser({ user, handleSubmit }) {
           onChange={(e) => handleUpdate(e)}
         />
       </Form.Group>
-      <Form.Group controlId="formEmail">
+      <Form.Group controlId="Emailform">
         <Form.Label>Email address:</Form.Label>
         <Form.Control
           type="email"

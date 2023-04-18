@@ -1,116 +1,119 @@
-import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
-import UserInfo from "./user-info";
-import FavoriteMovies from "./favorite-movies";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { UserInfo } from "./user-info";
+import { FavoriteMovies } from "./favorite-movies";
 import UpdateUser from "./update-user";
-import "./profile-view.scss";
 
-export function ProfileView({ movies, onUpdateUserInfo }) {
+export const ProfileView = () => {
   const [user, setUser] = useState({});
-
-  const getUser = async () => {
-    try {
-      const response = await axios.get(
-        `https://tamarflix.herokuapp.com/users/${user.Username}`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
-      setUser(response.data);
-      setFavorites(response.data.FavoriteMovies);
-    } catch (e) {
-      console.log(e);
-    }
-  };  
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  const handleUpdateUser = async (updatedUser) => {
-    try {
-      const response = await fetch(`/users/${user?.UserName}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        body: JSON.stringify(updatedUser),
-      });
-      const data = await response.json();
-      setUser(data);
-      onUpdateUserInfo(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    fetch("/users")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((data) => {
+        const loggedInUser = data.find((u) => u.UserName === "your-UserName");
+        setUser(loggedInUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    fetch("/movies")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((data) => {
+        setMovies(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const handleAddFavorite = (movieId) => {
-    const movieToAdd = movies.find((movie) => movie.id === movieId);
-    if (!favorites.some((movie) => movie.id === movieId)) {
-      setFavorites([...favorites, movieToAdd]);
-      axios
-        .post(
-          `https://tamarflix.herokuapp.com/users/${user.Username}/movies/${movieId}`,
-          {},
-          {
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-          }
-        )
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
+    setFavorites((prevFavorites) => {
+      console.log('Previous favorites:', prevFavorites);
+      const updatedFavorites = [...prevFavorites, movieId];
+      console.log('Updated favorites:', updatedFavorites);
+      return updatedFavorites;
+    });
+  };
+  
+  const handleRemoveFavorite = (movieId) => {
+    setFavorites((prevFavorites) => {
+      console.log('Previous favorites:', prevFavorites);
+      const updatedFavorites = prevFavorites.filter((id) => id !== movieId);
+      console.log('Updated favorites:', updatedFavorites);
+      return updatedFavorites;
+    });
   };  
 
-  const handleRemoveFavorite = (movieId) => {
-    setFavorites(favorites.filter((movie) => movie.id !== movieId));
-    axios
-      .delete(
-        `https://tamarflix.herokuapp.com/users/${user.Username}/movies/${movieId}`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      )
+  const updateUser = (updatedUser) => {
+    fetch(`/users/${user.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: updatedUser.email,
+        name: updatedUser.name,
+        birthday: updatedUser.birthday,
+        UserName: updatedUser.UserName,
+        password: updatedUser.password,
+      }),
+    })
       .then((response) => {
-        console.log(response);
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
       })
-      .catch((e) => {
-        console.log(e);
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  };  
+  };
+
+  const handleUserInfoChange = (updatedUser) => {
+    setUser((prevUser) => ({ ...prevUser, ...updatedUser }));
+  };
 
   return (
-    <div className="profile-view">
-      <h1 className="profile-title">Profile</h1>
-      {user.UserName ? (
-        <Card className="profile-card">
-          <Card.Body>
-            <UserInfo user={user} />
-            <UpdateUser user={user} onUpdateUser={handleUpdateUser} />
-            <hr />
-            {user.FavoriteMovies && user.FavoriteMovies.length > 0 ? (
-              <FavoriteMovies movies={movies} userFavoriteMovies={user.FavoriteMovies} />
-            ) : (
-              <p>No favorite movies yet.</p>
-            )}
-            <hr />
-            <Link to="/">
-              <Button className="back-button" variant="primary">Back to Movies</Button>
-            </Link>
-          </Card.Body>
-        </Card>
-      ) : (
-        <p>No user information found.</p>
-      )}
-    </div>
+    <>
+      <h1>Profile</h1>
+      <Container>
+        <Row>
+          <Col md={6}>
+            <UserInfo
+              email={user.email}
+              name={user.name}
+              birthday={user.birthday}
+              onUserChange={handleUserInfoChange}
+            />
+            <UpdateUser user={user} handleSubmit={updateUser} />
+          </Col>
+          <Col md={6}>
+            <FavoriteMovies
+              movies={movies}
+              favorites={favorites}
+              onAddFavorite={handleAddFavorite}
+              onRemoveFavorite={handleRemoveFavorite}
+            />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
-}
+};
