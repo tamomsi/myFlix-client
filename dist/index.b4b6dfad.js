@@ -47547,6 +47547,7 @@ var _favoriteMoviesScss = require("./favorite-movies.scss");
 const FavoriteMovies = ({ movies , onAddFavorite , onRemoveFavorite  })=>{
     let favorites = JSON.parse(localStorage.getItem("user")).FavoriteMovies;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        ClassName: "fav-movie-container",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                 children: "Favorite Movies"
@@ -47564,7 +47565,7 @@ const FavoriteMovies = ({ movies , onAddFavorite , onRemoveFavorite  })=>{
                 xxl: 3,
                 children: movies && movies.filter((movie)=>favorites.includes(movie.id)).map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
-                            className: "h-100",
+                            className: "h-100 movie-card",
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Img, {
                                     className: "movie-card-img",
@@ -47593,6 +47594,7 @@ const FavoriteMovies = ({ movies , onAddFavorite , onRemoveFavorite  })=>{
                                             columnNumber: 21
                                         }, undefined),
                                         onRemoveFavorite && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                                            className: "remove-button",
                                             variant: "secondary",
                                             onClick: ()=>onRemoveFavorite(movie.id),
                                             children: "Remove from list"

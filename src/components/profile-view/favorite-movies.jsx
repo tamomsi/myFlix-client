@@ -10,7 +10,7 @@ export const FavoriteMovies = ({ movies, onAddFavorite, onRemoveFavorite }) => {
   let favorites = JSON.parse(localStorage.getItem('user')).FavoriteMovies;
 
   return (
-    <div>
+    <div ClassName="fav-movie-container">
       <h2>Favorite Movies</h2>
       <Row xs={1} sm={2} md={2} lg={2} xl={3} xxl={3}>
         {movies &&
@@ -18,7 +18,7 @@ export const FavoriteMovies = ({ movies, onAddFavorite, onRemoveFavorite }) => {
             .filter((movie) => favorites.includes(movie.id))
             .map((movie) => (
               <Col key={movie.id}>
-                <Card className="h-100">
+                <Card className="h-100 movie-card">
                   <Card.Img className="movie-card-img" variant="top" src={movie.image} alt="" />
                   <Card.Body>
                     <Card.Title>
@@ -28,6 +28,7 @@ export const FavoriteMovies = ({ movies, onAddFavorite, onRemoveFavorite }) => {
                     </Card.Title>
                     {onRemoveFavorite && (
                       <Button
+                        className="remove-button"
                         variant="secondary"
                         onClick={() => onRemoveFavorite(movie.id)}
                       >
