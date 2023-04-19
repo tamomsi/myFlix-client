@@ -80,14 +80,39 @@ export const MainView = () => {
     }
   };  
   
-  function handleRemoveFromFavorites(movieId) {
+  const handleRemoveFromFavorites = (movieId) => {
     const userData = JSON.parse(localStorage.getItem('user'));
-    const newFavorites = userData.favorites.filter((movie) => movie.id !== id);
-    const newUserData = JSON.stringify({ ...userData, favorites: newFavorites });
-    localStorage.setItem('user', newUserData);
-    setUser(JSON.parse(newUserData));
-  }
-
+    const { favorites } = userData;
+    const newFavorites = favorites.filter((movie) => movie.id !== movieId);
+    const user = JSON.parse(localStorage.getItem('user'));
+  
+    if (favorites && favorites.some((movie) => movie.id === movieId)) {
+      setFavorites(newFavorites);
+      fetch(`https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to remove movie from favorites');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Success:', data);
+          let newUserData = JSON.stringify(data);
+          localStorage.setItem('user', newUserData);
+          alert('Movie successfully removed from favorites list.');
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          alert('There was an error removing the movie from favorites list.');
+        });
+    } else {
+      alert('This movie is not in your favorites list.');
+    }
+  };
+  
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={handleLogout}/>

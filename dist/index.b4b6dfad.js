@@ -5894,16 +5894,32 @@ const MainView = ()=>{
             });
         } else alert("This movie is already in your favorites list.");
     };
-    function handleRemoveFromFavorites(movieId) {
+    const handleRemoveFromFavorites = (movieId)=>{
         const userData = JSON.parse(localStorage.getItem("user"));
-        const newFavorites = userData.favorites.filter((movie)=>movie.id !== id);
-        const newUserData = JSON.stringify({
-            ...userData,
-            favorites: newFavorites
-        });
-        localStorage.setItem("user", newUserData);
-        setUser(JSON.parse(newUserData));
-    }
+        const { favorites  } = userData;
+        const newFavorites = favorites.filter((movie)=>movie.id !== movieId);
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (favorites && favorites.some((movie)=>movie.id === movieId)) {
+            setFavorites(newFavorites);
+            fetch(`https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }).then((response)=>{
+                if (!response.ok) throw new Error("Failed to remove movie from favorites");
+                return response.json();
+            }).then((data)=>{
+                console.log("Success:", data);
+                let newUserData = JSON.stringify(data);
+                localStorage.setItem("user", newUserData);
+                alert("Movie successfully removed from favorites list.");
+            }).catch((error)=>{
+                console.error("Error:", error);
+                alert("There was an error removing the movie from favorites list.");
+            });
+        } else alert("This movie is not in your favorites list.");
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigationBar.NavigationBar), {
@@ -5911,7 +5927,7 @@ const MainView = ()=>{
                 onLoggedOut: handleLogout
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 93,
+                lineNumber: 118,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -5974,7 +5990,7 @@ const MainView = ()=>{
                             }, void 0, true)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 96,
+                            lineNumber: 121,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -5984,7 +6000,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 136,
+                            lineNumber: 161,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -5995,7 +6011,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 140,
+                            lineNumber: 165,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6005,29 +6021,29 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 144,
+                            lineNumber: 169,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 95,
+                    lineNumber: 120,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 94,
+                lineNumber: 119,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 147,
+                lineNumber: 172,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 92,
+        lineNumber: 117,
         columnNumber: 5
     }, undefined);
 };
