@@ -94,7 +94,7 @@ export const ProfileView = ({movies, onAddFavorite, onRemoveFavorite}) => {
       <h1>Profile</h1>
       <Container>
         <Row>
-          <Col md={6}>
+          <Col md={4}>
             <UserInfo
               email={user.email}
               name={user.name}
