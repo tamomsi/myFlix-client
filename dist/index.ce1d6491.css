@@ -12064,6 +12064,12 @@ textarea.form-control-lg {
   background-color: #7fff00;
 }
 
+.movie-card-img {
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
 .my-footer-text {
   color: #7fff00;
   font-size: 14px;
