@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
-export const MovieCard = ({ movie, onAddToFavorites }) => {
+export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites  }) => {
   const maxDescriptionLength = 100;
   const truncatedDescription =
     movie.description.length > maxDescriptionLength
@@ -17,6 +17,12 @@ export const MovieCard = ({ movie, onAddToFavorites }) => {
     event.preventDefault();
     onAddToFavorites(movie.id); 
     setIsFavorite(true);
+  };
+
+  const handleRemoveFromFavorites = (event) => {
+    event.preventDefault();
+    onRemoveFromFavorites(movie.id);
+    setIsFavorite(false);
   };
 
   const handleFavoriteClick = (event) => {
@@ -62,9 +68,9 @@ MovieCard.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     genre: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-    }).isRequired,
+      name: PropTypes.string,
+      description: PropTypes.string,
+    }),
     director: PropTypes.shape({
       name: PropTypes.string.isRequired,
       bio: PropTypes.string.isRequired,
