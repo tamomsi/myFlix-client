@@ -82,11 +82,12 @@ export const MainView = () => {
   
   const handleRemoveFromFavorites = (movieId) => {
     const userData = JSON.parse(localStorage.getItem('user'));
-    const { favorites } = userData;
-    const newFavorites = favorites.filter((movie) => movie.id !== movieId);
+    const { FavoriteMovies } = userData;
+    const favorites = [... FavoriteMovies]
+    const newFavorites = favorites.filter((id) => id !== movieId);
     const user = JSON.parse(localStorage.getItem('user'));
   
-    if (favorites && favorites.some((movie) => movie.id === movieId)) {
+    if (favorites && favorites.some((id) => id === movieId)) {
       setFavorites(newFavorites);
       fetch(`https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
         method: 'DELETE',
@@ -150,7 +151,9 @@ export const MainView = () => {
                   {movies.map((movie) => (
                     <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
                       <MovieCard movie={movie} 
+                       fav={user.FavoriteMovies.includes(movie.id)}
                       onAddToFavorites={(movieId) => handleAddToFavorites(movieId)} 
+                      onRemoveFromFavorites={(movieId) => handleRemoveFromFavorites(movieId)} 
                       />
                     </Col>
                   ))}

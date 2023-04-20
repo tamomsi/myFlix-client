@@ -4,14 +4,14 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
-export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites  }) => {
+export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites  }) => {
   const maxDescriptionLength = 100;
   const truncatedDescription =
     movie.description.length > maxDescriptionLength
       ? `${movie.description.substring(0, maxDescriptionLength)}...`
       : movie.description;
 
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(fav);
 
   const handleAddToFavorites = (event) => {
     event.preventDefault();
@@ -51,8 +51,8 @@ export const MovieCard = ({ movie, onAddToFavorites, onRemoveFromFavorites  }) =
           </Link>
           <Button
             className="favorite-button"
-            variant={isFavorite ? 'danger' : 'outline-danger'}
-            onClick={handleFavoriteClick} //use handleFavoriteClick for favorite button click
+            variant={isFavorite ? 'secondary' : 'outline-primary'}
+            onClick={!isFavorite ? handleFavoriteClick : handleRemoveFromFavorites} //use handleFavoriteClick for favorite button click
           >
             {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
           </Button>

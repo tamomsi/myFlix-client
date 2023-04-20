@@ -11,7 +11,7 @@ export default function UpdateUser({ user, handleSubmit }) {
 
   return (
     <form className="profile-form" onSubmit={(e) => handleSubmit(e, updatedUser)}>
-      <h2>Want to change some info?</h2>
+      <h2 style={{ color: 'DarkSlateGray' }}>Want to change some info?</h2>
       <Form.Group controlId="formUserName">
         <Form.Label>Username:</Form.Label>
         <Form.Control
@@ -48,7 +48,7 @@ export default function UpdateUser({ user, handleSubmit }) {
           onChange={(e) => handleUpdate(e)}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" className="my-2">
         Update
       </Button>
     </form>

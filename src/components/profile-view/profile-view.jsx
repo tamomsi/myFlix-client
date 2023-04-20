@@ -21,7 +21,7 @@ export const ProfileView = ({movies, onAddFavorite, onRemoveFavorite}) => {
         setUser(loggedInUser);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
       });
 
     fetch("/movies")
@@ -35,7 +35,7 @@ export const ProfileView = ({movies, onAddFavorite, onRemoveFavorite}) => {
         setMovies(data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
       });
   }, []);
 
@@ -91,7 +91,7 @@ export const ProfileView = ({movies, onAddFavorite, onRemoveFavorite}) => {
 
   return (
     <>
-      <h1>Profile</h1>
+      <h1 style={{ color: 'DarkSlateGray' }}>Profile</h1>
       <Container>
         <Row>
           <Col md={4}>
