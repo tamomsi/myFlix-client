@@ -8,7 +8,7 @@ import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Footer } from "../navigation-bar/footer";
 
 export const MainView = () => {
@@ -17,7 +17,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser || null);
   const [token, setToken] = useState(storedToken || null);
   const [movies, setMovies] = useState([]);
-  cconst [favMovies, setFavMovies] = useState(user?.FavoriteMovies || []);
+  const [favMovies, setFavMovies] = useState(user?.FavoriteMovies || []);
 
   useEffect(() => {
     if (!token) return;
@@ -46,7 +46,7 @@ export const MainView = () => {
       setFavMovies([]);
       return;
     }
-
+  
     setFavMovies(user.FavoriteMovies || []);
   }, [user]);
 
@@ -80,38 +80,34 @@ export const MainView = () => {
     }
   };  
   
-  const handleRemoveFromFavorites = (movieId) => {
-    const userData = JSON.parse(localStorage.getItem('user'));
-    const { FavoriteMovies } = userData;
-    const favorites = [... FavoriteMovies]
-    const newFavorites = favorites.filter((id) => id !== movieId);
-    const user = JSON.parse(localStorage.getItem('user'));
-  
-    if (favorites && favorites.some((id) => id === movieId)) {
-      setFavorites(newFavorites);
-      fetch(`https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Failed to remove movie from favorites');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log('Success:', data);
-          let newUserData = JSON.stringify(data);
-          localStorage.setItem('user', newUserData);
-          alert('Movie successfully removed from favorites list.');
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          alert('There was an error removing the movie from favorites list.');
-        });
-    } else {
-      alert('This movie is not in your favorites list.');
+  const removeFromFav = async (movieId) => {
+    // Check if the movie is not in the favorites list
+    if (!favMovies.includes(movieId)) {
+      alert("This movie is not in your favorites list.");
+      return;
     }
+
+    try {
+      await fetch(
+        `https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      const updatedFavMovies = favMovies.filter((id) => id !== movieId);
+      setFavMovies(updatedFavMovies);
+      updateLocalStorageFavorites(updatedFavMovies);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("There was an error removing the movie from favorites list.");
+    }
+  };
+
+  const updateLocalStorageFavorites = (updatedFavMovies) => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    userData.FavoriteMovies = updatedFavMovies;
+    localStorage.setItem("user", JSON.stringify(userData));
   };
   
   return (
@@ -146,29 +142,46 @@ export const MainView = () => {
                 </>
               ) : (
                 <>
-                  <Col xs={12} className="mb-1.5">
-                  </Col>
-                  {movies.map((movie) => (
-                    <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
-                      <MovieCard movie={movie} 
-                       fav={user.FavoriteMovies.includes(movie.id)}
-                      onAddToFavorites={(movieId) => handleAddToFavorites(movieId)} 
-                      onRemoveFromFavorites={(movieId) => handleRemoveFromFavorites(movieId)} 
-                      />
-                    </Col>
-                  ))}
+                  <Col xs={12} className="mb-1.5"></Col>
+                  {movies.map((movie) => {
+                    console.log("MainView favMovies:", movie.title, favMovies.includes(movie.id));
+                    return (
+                      <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
+                        <MovieCard
+                          movie={movie}
+                          fav={favMovies.includes(movie.id)}
+                          onAddToFavorites={(movieId) => addToFav(movieId)}
+                          onRemoveFromFavorites={(movieId) => removeFromFav(movieId)}
+                        />
+                      </Col>
+                    );
+                  })}
+
                 </>
               )
             }
           />
           <Route
             path="/movies/:movieId" 
-            element={<MovieView movies={movies} />}
+            element={<MovieView
+              movies={movies}
+              favoritesMovies={favMovies}
+              addToFavorites={addToFav}
+              removeFromFavorites={removeFromFav}
+           />}
           />
-          <Route 
+          <Route
             path="/users/:UserName"
-            element={<ProfileView user={user} movies={movies}/>}
-          />
+            element={
+              <ProfileView
+                user={user}
+                movies={movies}
+                favoritesMovies={favMovies}
+                addToFavorites={addToFav}
+                removeFromFavorites={removeFromFav}
+              />
+            }
+            />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Row>

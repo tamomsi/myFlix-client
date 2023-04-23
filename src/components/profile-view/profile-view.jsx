@@ -4,9 +4,8 @@ import { UserInfo } from "./user-info";
 import { FavoriteMovies } from "./favorite-movies";
 import UpdateUser from "./update-user";
 
-export const ProfileView = ({movies, onAddFavorite, onRemoveFavorite}) => {
-  const [user, setUser] = useState({movies});
-  const [favorites, setFavorites] = useState([]);
+export const ProfileView = ({movies, favoritesMovies, addToFavorites, removeFromFavorites}) => {
+  const [user, setUser] = useState(movies);
 
   useEffect(() => {
     fetch("/users")
@@ -38,24 +37,6 @@ export const ProfileView = ({movies, onAddFavorite, onRemoveFavorite}) => {
         console.log(error)
       });
   }, []);
-
-  const handleAddFavorite = (movieId) => {
-    setFavorites((prevFavorites) => {
-      console.log('Previous favorites:', prevFavorites);
-      const updatedFavorites = [...prevFavorites, movieId];
-      console.log('Updated favorites:', updatedFavorites);
-      return updatedFavorites;
-    });
-  };
-  
-  const handleRemoveFavorite = (movieId) => {
-    setFavorites((prevFavorites) => {
-      console.log('Previous favorites:', prevFavorites);
-      const updatedFavorites = prevFavorites.filter((id) => id !== movieId);
-      console.log('Updated favorites:', updatedFavorites);
-      return updatedFavorites;
-    });
-  };  
 
   const updateUser = (updatedUser) => {
     fetch(`/users/${user.id}`, {
@@ -95,19 +76,24 @@ export const ProfileView = ({movies, onAddFavorite, onRemoveFavorite}) => {
       <Container>
         <Row>
           <Col md={4}>
-            <UserInfo
-              email={user.email}
-              name={user.name}
-              birthday={user.birthday}
-              onUserChange={handleUserInfoChange}
-            />
-            <UpdateUser user={user} handleSubmit={updateUser} />
+            {user && (
+              <>
+                <UserInfo
+                  email={user.email}
+                  name={user.name}
+                  birthday={user.birthday}
+                  onUserChange={handleUserInfoChange}
+                />
+                <UpdateUser user={user} handleSubmit={updateUser} />
+              </>
+            )}
           </Col>
-          <Col md={6}>
+          <Col md={8}>
             <FavoriteMovies
               movies={movies}
-              onAddFavorite={handleAddFavorite}
-              onRemoveFavorite={handleRemoveFavorite}
+              favoritesMovies={favoritesMovies}
+              onAddFavorite={addToFavorites}
+              onRemoveFavorite={removeFromFavorites}
             />
           </Col>
         </Row>

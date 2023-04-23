@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,12 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
       : movie.description;
 
   const [isFavorite, setIsFavorite] = useState(fav);
+
+      useEffect(() => {
+        setIsFavorite(fav);
+        console.log("MovieCard fav prop:", movie.title, fav);
+      }, [fav]);
+
 
   const handleAddToFavorites = (event) => {
     event.preventDefault();
@@ -72,10 +78,8 @@ MovieCard.propTypes = {
       description: PropTypes.string,
     }),
     director: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      bio: PropTypes.string.isRequired,
-      birth: PropTypes.string.isRequired,
-      death: PropTypes.string,
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   onAddToFavorites: PropTypes.func.isRequired,
