@@ -7,7 +7,6 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import { Footer } from "../navigation-bar/footer";
@@ -18,7 +17,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser || null);
   const [token, setToken] = useState(storedToken || null);
   const [movies, setMovies] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+  cconst [favMovies, setFavMovies] = useState(user?.FavoriteMovies || []);
 
   useEffect(() => {
     if (!token) return;
@@ -42,41 +41,42 @@ export const MainView = () => {
       });
   }, [token]);
 
+  useEffect(() => {
+    if (!user) {
+      setFavMovies([]);
+      return;
+    }
+
+    setFavMovies(user.FavoriteMovies || []);
+  }, [user]);
+
   const handleLogout = () => {
     setUser(null);
     setToken(null);
     localStorage.clear(); // This will clear all the items in localStorage
   };
 
-  const handleAddToFavorites = (movieId) => {
-    console.log('movieId:', movieId);
-    console.log('movies:', movies);
-  
-    const movieToAdd = movies.find((movie) => movie.id === movieId);
-    console.log('movieToAdd:', movieToAdd);
-    const user =JSON.parse(localStorage.getItem('user'))
-  
-    if (favorites && favorites.some((movie) => movie.id === movieId)) {
-        console.log(`Movie with id ${movieId} is already in favorites.`);
-      } else if (movieToAdd) {
-      setFavorites([...favorites, movieToAdd]);
-      fetch(`https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data);
-          let newUserData = JSON.stringify(data);
-          localStorage.setItem('user', newUserData);
-          alert('Movie successfully added to favorites list.');
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          alert('There was an error adding the movie to favorites list.');
-        });
-    } else {
-      alert('This movie is already in your favorites list.');
+  const addToFav = async (movieId) => {
+    // Check if the movie is already in the favorites list
+    if (favMovies.includes(movieId)) {
+      alert("This movie is already in your favorites list.");
+      return;
+    }
+
+    try {
+      await fetch(
+        `https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`,
+        {
+          method: "POST",
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      const updatedFavMovies = [...favMovies, movieId];
+      setFavMovies(updatedFavMovies);
+      updateLocalStorageFavorites(updatedFavMovies);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("There was an error adding the movie to favorites list.");
     }
   };  
   

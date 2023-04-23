@@ -5826,8 +5826,6 @@ var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _reactRouterDom = require("react-router-dom");
 var _footer = require("../navigation-bar/footer");
 var _s = $RefreshSig$();
@@ -5838,7 +5836,7 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(storedUser || null);
     const [token, setToken] = (0, _react.useState)(storedToken || null);
     const [movies, setMovies] = (0, _react.useState)([]);
-    const [favorites, setFavorites] = (0, _react.useState)([]);
+    cconst[favMovies, setFavMovies] = (0, _react.useState)(user?.FavoriteMovies || []);
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://tamarflix.herokuapp.com/movies", {
@@ -5861,38 +5859,43 @@ const MainView = ()=>{
     }, [
         token
     ]);
+    (0, _react.useEffect)(()=>{
+        if (!user) {
+            setFavMovies([]);
+            return;
+        }
+        setFavMovies(user.FavoriteMovies || []);
+    }, [
+        user
+    ]);
     const handleLogout = ()=>{
         setUser(null);
         setToken(null);
         localStorage.clear(); // This will clear all the items in localStorage
     };
-    const handleAddToFavorites = (movieId)=>{
-        console.log("movieId:", movieId);
-        console.log("movies:", movies);
-        const movieToAdd = movies.find((movie)=>movie.id === movieId);
-        console.log("movieToAdd:", movieToAdd);
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (favorites && favorites.some((movie)=>movie.id === movieId)) console.log(`Movie with id ${movieId} is already in favorites.`);
-        else if (movieToAdd) {
-            setFavorites([
-                ...favorites,
-                movieToAdd
-            ]);
-            fetch(`https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
+    const addToFav = async (movieId)=>{
+        // Check if the movie is already in the favorites list
+        if (favMovies.includes(movieId)) {
+            alert("This movie is already in your favorites list.");
+            return;
+        }
+        try {
+            await fetch(`https://tamarflix.herokuapp.com/users/${user.UserName}/movies/${movieId}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
-            }).then((response)=>response.json()).then((data)=>{
-                console.log("Success:", data);
-                let newUserData = JSON.stringify(data);
-                localStorage.setItem("user", newUserData);
-                alert("Movie successfully added to favorites list.");
-            }).catch((error)=>{
-                console.error("Error:", error);
-                alert("There was an error adding the movie to favorites list.");
             });
-        } else alert("This movie is already in your favorites list.");
+            const updatedFavMovies = [
+                ...favMovies,
+                movieId
+            ];
+            setFavMovies(updatedFavMovies);
+            updateLocalStorageFavorites(updatedFavMovies);
+        } catch (error) {
+            console.error("Error:", error);
+            alert("There was an error adding the movie to favorites list.");
+        }
     };
     const handleRemoveFromFavorites = (movieId)=>{
         const userData = JSON.parse(localStorage.getItem("user"));
@@ -6052,7 +6055,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "1dCAN1YGKD+FRSFp/GH1k8MzsfE=");
+_s(MainView, "2cFOITEaUVKvmsOudxVkiG8A5Co=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -6062,7 +6065,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt","react-router-dom":"9xmpe","../navigation-bar/navigation-bar":"bsPVM","../profile-view/profile-view":"2vVqf","../navigation-bar/footer":"3Txvu"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","../navigation-bar/navigation-bar":"bsPVM","../profile-view/profile-view":"2vVqf","react-router-dom":"9xmpe","../navigation-bar/footer":"3Txvu"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47281,7 +47284,7 @@ $RefreshReg$(_c, "NavigationBar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","react":"21dqq","react-bootstrap/Button":"aPzUt","./navigation-bar.scss":"dnXvl"}],"dnXvl":[function() {},{}],"2vVqf":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","react-bootstrap/Button":"aPzUt","./navigation-bar.scss":"dnXvl","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC"}],"dnXvl":[function() {},{}],"2vVqf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3c12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47454,7 +47457,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","react-bootstrap":"3AD9A","./user-info":"66eot","./favorite-movies":"dTTQH","./update-user":"2SBwg"}],"66eot":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","./user-info":"66eot","./favorite-movies":"dTTQH","./update-user":"2SBwg","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC"}],"66eot":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47636,7 +47639,7 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","react-bootstrap/Card":"lAynp","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./favorite-movies.scss":"c49mk"}],"c49mk":[function() {},{}],"2SBwg":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap/Button":"aPzUt","react-bootstrap/Card":"lAynp","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","./favorite-movies.scss":"c49mk","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC"}],"c49mk":[function() {},{}],"2SBwg":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$95d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
