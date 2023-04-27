@@ -45,7 +45,7 @@ export const MovieView = ({
             <Card.Text>Genre Description: {movie.genre.Description}</Card.Text>
             <Button
               className="favorite-button"
-              variant={isFavorite ? "danger" : "outline-danger"}
+              variant={isFavorite ? "primary" : "outline-primary"}
               onClick={handleFavoriteClick}
             >
               {isFavorite ? "Remove from Favorites" : "Add to Favorites"}

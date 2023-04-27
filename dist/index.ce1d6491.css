@@ -12036,6 +12036,7 @@ textarea.form-control-lg {
   background-color: #2f4f4f;
   border: none;
   border-radius: 4px;
+  margin: 5px;
   padding: 4px 12px;
 }
 
@@ -12101,7 +12102,7 @@ textarea.form-control-lg {
 }
 
 .profile-card {
-  border: 1px solid #2f4f4f;
+  border: 3px solid #2f4f4f;
   margin-bottom: 2rem;
   padding: 1rem;
 }

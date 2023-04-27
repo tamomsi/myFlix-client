@@ -46666,7 +46666,7 @@ const MovieView = ({ movies , addToFavorites , removeFromFavorites , favoritesMo
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             className: "favorite-button",
-                            variant: isFavorite ? "danger" : "outline-danger",
+                            variant: isFavorite ? "primary" : "outline-primary",
                             onClick: handleFavoriteClick,
                             children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
                         }, void 0, false, {
