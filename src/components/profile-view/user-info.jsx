@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from 'react-bootstrap';
 
 export const UserInfo = ({ user }) => {
+  
   return (
     <Card style={{backgroundColor: 'DarkGray'}}>
       <Card.Body>

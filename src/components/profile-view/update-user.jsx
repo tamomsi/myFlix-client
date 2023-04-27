@@ -9,6 +9,12 @@ export default function UpdateUser({ user, handleSubmit }) {
     setUpdatedUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
+  function formatDate(dateString) {
+    const dateObj = new Date(dateString);
+    const formattedDate = dateObj.toISOString().substring(0, 10);
+    return formattedDate;
+  }
+
   return (
     <form
       className="profile-form"
@@ -56,11 +62,4 @@ export default function UpdateUser({ user, handleSubmit }) {
       </Button>
     </form>
   );
-}
-
-
-function formatDate(dateString) {
-  const dateObj = new Date(dateString);
-  const formattedDate = dateObj.toISOString().substring(0, 10);
-  return formattedDate;
 }
