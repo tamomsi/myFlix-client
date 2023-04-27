@@ -47609,7 +47609,7 @@ function UpdateUser({ user , handleSubmit  }) {
                 children: "Want to change some info?"
             }, void 0, false, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 14,
+                lineNumber: 17,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47619,23 +47619,23 @@ function UpdateUser({ user , handleSubmit  }) {
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 16,
+                        lineNumber: 19,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                         type: "text",
-                        name: "UserName",
+                        name: "username",
                         value: updatedUser.UserName,
                         onChange: (e)=>handleUpdate(e)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 17,
+                        lineNumber: 20,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 15,
+                lineNumber: 18,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47645,23 +47645,23 @@ function UpdateUser({ user , handleSubmit  }) {
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 25,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                         type: "password",
                         name: "password",
-                        value: updatedUser.password,
+                        value: updatedUser.Password,
                         onChange: (e)=>handleUpdate(e)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 26,
+                        lineNumber: 29,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 24,
+                lineNumber: 27,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47671,7 +47671,7 @@ function UpdateUser({ user , handleSubmit  }) {
                         children: "Email address:"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 34,
+                        lineNumber: 37,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -47681,13 +47681,13 @@ function UpdateUser({ user , handleSubmit  }) {
                         onChange: (e)=>handleUpdate(e)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 35,
+                        lineNumber: 38,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 33,
+                lineNumber: 36,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -47697,23 +47697,23 @@ function UpdateUser({ user , handleSubmit  }) {
                         children: "Date of Birth:"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 43,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                         type: "date",
                         name: "dateOfBirth",
-                        value: updatedUser.dateOfBirth,
+                        value: formatDate(updatedUser.Birthday),
                         onChange: (e)=>handleUpdate(e)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 44,
+                        lineNumber: 47,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 42,
+                lineNumber: 45,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -47723,7 +47723,7 @@ function UpdateUser({ user , handleSubmit  }) {
                 children: "Update"
             }, void 0, false, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 51,
+                lineNumber: 54,
                 columnNumber: 7
             }, this)
         ]
@@ -47736,6 +47736,11 @@ function UpdateUser({ user , handleSubmit  }) {
 exports.default = UpdateUser;
 _s(UpdateUser, "p6/wxjcHOft9VAH+UHM83DBN/LM=");
 _c = UpdateUser;
+function formatDate(dateString) {
+    const dateObj = new Date(dateString);
+    const formattedDate = dateObj.toISOString().substring(0, 10);
+    return formattedDate;
+}
 var _c;
 $RefreshReg$(_c, "UpdateUser");
 

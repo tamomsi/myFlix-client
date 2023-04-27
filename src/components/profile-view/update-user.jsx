@@ -10,13 +10,16 @@ export default function UpdateUser({ user, handleSubmit }) {
   };
 
   return (
-    <form className="profile-form" onSubmit={(e) => handleSubmit(e, updatedUser)}>
-      <h2 style={{ color: 'DarkSlateGray' }}>Want to change some info?</h2>
+    <form
+      className="profile-form"
+      onSubmit={(e) => handleSubmit(e, updatedUser)}
+    >
+      <h2 style={{ color: "DarkSlateGray" }}>Want to change some info?</h2>
       <Form.Group controlId="formUserName">
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
-          name="UserName"
+          name="username"
           value={updatedUser.UserName}
           onChange={(e) => handleUpdate(e)}
         />
@@ -26,7 +29,7 @@ export default function UpdateUser({ user, handleSubmit }) {
         <Form.Control
           type="password"
           name="password"
-          value={updatedUser.password}
+          value={updatedUser.Password}
           onChange={(e) => handleUpdate(e)}
         />
       </Form.Group>
@@ -44,7 +47,7 @@ export default function UpdateUser({ user, handleSubmit }) {
         <Form.Control
           type="date"
           name="dateOfBirth"
-          value={updatedUser.dateOfBirth}
+          value={formatDate(updatedUser.Birthday)}
           onChange={(e) => handleUpdate(e)}
         />
       </Form.Group>
@@ -53,4 +56,11 @@ export default function UpdateUser({ user, handleSubmit }) {
       </Button>
     </form>
   );
+}
+
+
+function formatDate(dateString) {
+  const dateObj = new Date(dateString);
+  const formattedDate = dateObj.toISOString().substring(0, 10);
+  return formattedDate;
 }
