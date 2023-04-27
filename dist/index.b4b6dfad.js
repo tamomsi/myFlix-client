@@ -47514,7 +47514,7 @@ const UserInfo = ({ user  })=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                             className: "value",
-                            children: user.Birthday
+                            children: new Date(user.Birthday).toLocaleDateString("en-GB")
                         }, void 0, false, {
                             fileName: "src/components/profile-view/user-info.jsx",
                             lineNumber: 19,

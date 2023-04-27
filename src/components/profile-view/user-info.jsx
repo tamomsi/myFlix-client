@@ -16,7 +16,7 @@ export const UserInfo = ({ user }) => {
         </Card.Text>
         <Card.Text className="profile-text">
           <span className="label">Birthday: </span>
-          <span className="value">{user.Birthday}</span>
+          <span className="value">{new Date(user.Birthday).toLocaleDateString('en-GB')}</span>
         </Card.Text>
         </Card.Body>
     </Card>
