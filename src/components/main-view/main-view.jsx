@@ -46,7 +46,7 @@ export const MainView = () => {
       setFavMovies([]);
       return;
     }
-  
+
     setFavMovies(user.FavoriteMovies || []);
   }, [user]);
 
@@ -78,8 +78,8 @@ export const MainView = () => {
       console.error("Error:", error);
       alert("There was an error adding the movie to favorites list.");
     }
-  };  
-  
+  };
+
   const removeFromFav = async (movieId) => {
     // Check if the movie is not in the favorites list
     if (!favMovies.includes(movieId)) {
@@ -109,7 +109,7 @@ export const MainView = () => {
     userData.FavoriteMovies = updatedFavMovies;
     localStorage.setItem("user", JSON.stringify(userData));
   };
-  
+
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={handleLogout}/>
@@ -144,7 +144,6 @@ export const MainView = () => {
                 <>
                   <Col xs={12} className="mb-1.5"></Col>
                   {movies.map((movie) => {
-                    console.log("MainView favMovies:", movie.title, favMovies.includes(movie.id));
                     return (
                       <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
                         <MovieCard
@@ -162,7 +161,7 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/movies/:movieId" 
+            path="/movies/:movieId"
             element={<MovieView
               movies={movies}
               favoritesMovies={favMovies}
