@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Card, Button } from 'react-bootstrap';
-import './movie-view.scss';
+import { Card, Button } from "react-bootstrap";
+import "./movie-view.scss";
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ 
+  movies, 
+  addToFavorites,
+  removeFromFavorites,
+  favoritesMovies 
+}) => {
   const { movieId } = useParams();
 
   const movie = movies.find((m) => m.id === movieId);
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const checkIfFavorite = favoritesMovies?.includes(movieId) || false;
+  const [isFavorite, setIsFavorite] = useState(checkIfFavorite);
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      removeFromFavorites(movieId);
+    } else {
+      addToFavorites(movieId);
+    }
   };
 
   return (
@@ -25,21 +37,17 @@ export const MovieView = ({ movies }) => {
             <Card.Title>{movie.title}</Card.Title>
             <Card.Text>{movie.description}</Card.Text>
             <Card.Text>Director: {movie.director.Name}</Card.Text>
-            <Card.Text>
-              Biography of the Director: {movie.director.Bio}
-            </Card.Text>
+            <Card.Text>Biography of the Director: {movie.director.Bio}</Card.Text>
             <Card.Text>Birth Year: {movie.director.Birth}</Card.Text>
             <Card.Text>Death Year: {movie.director.Death}</Card.Text>
             <Card.Text>Genre: {movie.genre.Name}</Card.Text>
-            <Card.Text>
-              Genre Description: {movie.genre.Description}
-            </Card.Text>
+            <Card.Text>Genre Description: {movie.genre.Description}</Card.Text>
             <Button
               className="favorite-button"
-              variant={isFavorite ? 'danger' : 'outline-danger'}
+              variant={isFavorite ? "danger" : "outline-danger"}
               onClick={handleFavoriteClick}
             >
-              {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+              {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
             </Button>
             <Link to={`/`}>
               <Button className="back-button" variant="primary">
