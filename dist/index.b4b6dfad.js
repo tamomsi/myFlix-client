@@ -47434,62 +47434,110 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UserInfo", ()=>UserInfo);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _favoriteMovies = require("./favorite-movies");
 var _reactBootstrap = require("react-bootstrap");
-var _s = $RefreshSig$();
-const UserInfo = ({ email , name , birthday , onUserChange  })=>{
-    _s();
-    const [user, setUser] = (0, _react.useState)({
-        email,
-        name,
-        birthday
-    });
-    (0, _react.useEffect)(()=>{
-        fetch("/users").then((response)=>{
-            if (response.ok) return response.json();
-            throw new Error("Network response was not ok.");
-        }).then((data)=>{
-            const loggedInUser = data.find((u)=>u.UserName === "your-UserName");
-            setUser(loggedInUser);
-        }).catch((error)=>{
-            console.log(error);
-        });
-    }, []);
-    const getUser = ()=>{
-        fetch(`/users/${user.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: user.email,
-                name: user.name,
-                birthday: user.birthday
-            })
-        }).then((response)=>{
-            if (response.ok) return response.json();
-            throw new Error("Network response was not ok.");
-        }).then((data)=>{
-            setUser(data);
-            onUserChange(data);
-        }).catch((error)=>{
-            console.log(error);
-        });
-    };
-    const handleInputChange = (event)=>{
-        setUser({
-            ...user,
-            [event.target.name]: event.target.value
-        });
-    };
-    const handleSubmit = (event)=>{
-        event.preventDefault();
-        getUser();
-    };
+const UserInfo = ({ user  })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
+        className: "profile-card",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
+                    className: "profile-title",
+                    children: "User Info"
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/user-info.jsx",
+                    lineNumber: 8,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
+                    className: "profile-text",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "label",
+                            children: "Username: "
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/user-info.jsx",
+                            lineNumber: 10,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "value",
+                            children: user.UserName
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/user-info.jsx",
+                            lineNumber: 11,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/profile-view/user-info.jsx",
+                    lineNumber: 9,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
+                    className: "profile-text",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "label",
+                            children: "Email: "
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/user-info.jsx",
+                            lineNumber: 14,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "value",
+                            children: user.email
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/user-info.jsx",
+                            lineNumber: 15,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/profile-view/user-info.jsx",
+                    lineNumber: 13,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
+                    className: "profile-text",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "label",
+                            children: "Birthday: "
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/user-info.jsx",
+                            lineNumber: 18,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "value",
+                            children: user.Birthday
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/user-info.jsx",
+                            lineNumber: 19,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/profile-view/user-info.jsx",
+                    lineNumber: 17,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/profile-view/user-info.jsx",
+            lineNumber: 7,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/profile-view/user-info.jsx",
+        lineNumber: 6,
+        columnNumber: 5
+    }, undefined);
 };
-_s(UserInfo, "LYcxY5laKFXNe070cqE9XyinxV8=");
 _c = UserInfo;
 var _c;
 $RefreshReg$(_c, "UserInfo");
@@ -47499,7 +47547,7 @@ $RefreshReg$(_c, "UserInfo");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","./favorite-movies":"dTTQH","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC"}],"dTTQH":[function(require,module,exports) {
+},{"react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","react/jsx-dev-runtime":"iTorj"}],"dTTQH":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8767 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
