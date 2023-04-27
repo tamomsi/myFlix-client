@@ -144,7 +144,6 @@ export const MainView = () => {
                 <>
                   <Col xs={12} className="mb-1.5"></Col>
                   {movies.map((movie) => {
-                    console.log("MainView favMovies:", movie.title, favMovies.includes(movie.id));
                     return (
                       <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
                         <MovieCard
