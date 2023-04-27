@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { UserInfo } from "./user-info";
 import { FavoriteMovies } from "./favorite-movies";
 import UpdateUser from "./update-user";
+import "./profile-view.scss";
 
 export const ProfileView = ({user, movies, favoritesMovies, addToFavorites, removeFromFavorites}) => {
 
@@ -46,9 +47,11 @@ export const ProfileView = ({user, movies, favoritesMovies, addToFavorites, remo
           <Col md={4}>
             {user && (
               <>
-                <UserInfo
-                  user={user}
-                />
+                <div className="profile-card">
+                  <UserInfo
+                    user={user}
+                  />
+                </div>
                 <UpdateUser user={user} handleSubmit={updateUser} />
               </>
             )}

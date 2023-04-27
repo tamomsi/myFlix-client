@@ -3,9 +3,9 @@ import { Card } from 'react-bootstrap';
 
 export const UserInfo = ({ user }) => {
   return (
-    <Card className="profile-card">
+    <Card style={{backgroundColor: 'DarkGray'}}>
       <Card.Body>
-        <Card.Title className="profile-title">User Info</Card.Title>
+        <Card.Title className="profile-title" style={{color: 'DarkSlateGray'}}>User Info</Card.Title>
         <Card.Text className="profile-text">
           <span className="label">Username: </span>
           <span className="value">{user.UserName}</span>
