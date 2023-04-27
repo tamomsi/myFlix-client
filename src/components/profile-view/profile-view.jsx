@@ -4,40 +4,9 @@ import { UserInfo } from "./user-info";
 import { FavoriteMovies } from "./favorite-movies";
 import UpdateUser from "./update-user";
 
-export const ProfileView = ({movies, favoritesMovies, addToFavorites, removeFromFavorites}) => {
-  const [user, setUser] = useState(movies);
+export const ProfileView = ({user, movies, favoritesMovies, addToFavorites, removeFromFavorites}) => {
 
-  useEffect(() => {
-    fetch("/users")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((data) => {
-        const loggedInUser = data.find((u) => u.UserName === "your-UserName");
-        setUser(loggedInUser);
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-
-    fetch("/movies")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((data) => {
-        setMovies(data);
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  }, []);
-
+  // look at how you made other fetch
   const updateUser = (updatedUser) => {
     fetch(`/users/${user.id}`, {
       method: "PUT",
@@ -79,10 +48,7 @@ export const ProfileView = ({movies, favoritesMovies, addToFavorites, removeFrom
             {user && (
               <>
                 <UserInfo
-                  email={user.email}
-                  name={user.name}
-                  birthday={user.birthday}
-                  onUserChange={handleUserInfoChange}
+                  user={user}
                 />
                 <UpdateUser user={user} handleSubmit={updateUser} />
               </>
