@@ -7,7 +7,7 @@ export const MovieView = ({
   movies, 
   addToFavorites,
   removeFromFavorites,
-  favoritesMovies 
+  
 }) => {
   const { movieId } = useParams();
 
