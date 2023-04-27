@@ -12,10 +12,9 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
       : movie.description;
 
   const [isFavorite, setIsFavorite] = useState(fav);
-
-      useEffect(() => {
+        
+        useEffect(() => {
         setIsFavorite(fav);
-        console.log("MovieCard fav prop:", movie.title, fav);
       }, [fav]);
 
 

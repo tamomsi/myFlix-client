@@ -6096,7 +6096,6 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites  })=
     const [isFavorite, setIsFavorite] = (0, _react.useState)(fav);
     (0, _react.useEffect)(()=>{
         setIsFavorite(fav);
-        console.log("MovieCard fav prop:", movie.title, fav);
     }, [
         fav
     ]);
@@ -6125,7 +6124,7 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites  })=
                 alt: movie.title
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 45,
+                lineNumber: 44,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -6134,14 +6133,14 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites  })=
                         children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 52,
+                        lineNumber: 51,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: truncatedDescription
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 53,
+                        lineNumber: 52,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -6154,12 +6153,12 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites  })=
                                     children: "Open"
                                 }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",
-                                    lineNumber: 56,
+                                    lineNumber: 55,
                                     columnNumber: 13
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 55,
+                                lineNumber: 54,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -6169,25 +6168,25 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites  })=
                                 children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 58,
+                                lineNumber: 57,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 54,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 51,
+                lineNumber: 50,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 44,
+        lineNumber: 43,
         columnNumber: 5
     }, undefined);
 };
