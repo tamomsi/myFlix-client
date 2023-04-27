@@ -12,15 +12,15 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
       : movie.description;
 
   const [isFavorite, setIsFavorite] = useState(fav);
-        
-        useEffect(() => {
+
+      useEffect(() => {
         setIsFavorite(fav);
       }, [fav]);
 
 
   const handleAddToFavorites = (event) => {
     event.preventDefault();
-    onAddToFavorites(movie.id); 
+    onAddToFavorites(movie.id);
     setIsFavorite(true);
   };
 
