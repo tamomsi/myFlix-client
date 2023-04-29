@@ -51,9 +51,7 @@ export const MovieView = ({
               {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
             </Button>
             <Link to={`/`}>
-              <Button className="back-button" variant="primary">
-                Back
-              </Button>
+              <Button className="back-button" variant="primary">Back</Button>
             </Link>
           </Card.Body>
         </Card>
