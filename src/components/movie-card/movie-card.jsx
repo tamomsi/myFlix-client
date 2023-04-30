@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
-export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites  }) => {
+export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites, onfilteredMovies  }) => {
   const maxDescriptionLength = 100;
   const truncatedDescription =
     movie.description.length > maxDescriptionLength
@@ -39,6 +39,20 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
     }
   };
 
+  const setFilteredMovies = (event) => {
+    event.preventDefault();
+    if (filteredMovies) {
+      filteredMovies(false);
+    } else {
+      setFilteredMovies(event);
+    }
+  };
+
+  const handleGenreFilter = (event) => {
+    event.preventDefault();
+    onFilteredByGenre(movie.genre.name);
+  };
+  
   return (
     <Card className="h-100">
       <Card.Img
@@ -82,4 +96,5 @@ MovieCard.propTypes = {
     }).isRequired,
   }).isRequired,
   onAddToFavorites: PropTypes.func.isRequired,
+  onFilteredByGenre: PropTypes.func.isRequired,
 };

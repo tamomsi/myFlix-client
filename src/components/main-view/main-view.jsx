@@ -12,16 +12,27 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Footer } from "../navigation-bar/footer";
 
 export const MainView = () => {
+  // retrieve user and token from localStorage if they exist
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
+  // set the initial state of user and token based on the retrieved values
   const [user, setUser] = useState(storedUser || null);
   const [token, setToken] = useState(storedToken || null);
   const [movies, setMovies] = useState([]);
+  // set the initial state of favMovies based on the user's favorite movies
   const [favMovies, setFavMovies] = useState(user?.FavoriteMovies || []);
+  const [filter, setFilter] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [genres, setGenres] = useState([]);
 
+  // fetch movies from the server when the token or filter changes
   useEffect(() => {
-    if (!token) return;
-    fetch("https://tamarflix.herokuapp.com/movies", {
+    if (!token) return; // don't fetch movies if the user is not logged in
+    let url = "https://tamarflix.herokuapp.com/movies";
+    if (filter) {
+      url += `?genre=${filter}`;
+    }
+    fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
@@ -39,8 +50,9 @@ export const MainView = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [token]);
+  }, [token, filter]);
 
+  // update the favorite movies list when the user changes
   useEffect(() => {
     if (!user) {
       setFavMovies([]);
@@ -50,6 +62,20 @@ export const MainView = () => {
     setFavMovies(user.FavoriteMovies || []);
   }, [user]);
 
+  // update the filtered movies list when the movies or filter change
+  useEffect(() => {
+    if (filter) {
+      console.log(`Filtering movies by genre: ${filter}`);
+      const filtered = movies.filter(movie => movie.genre.name === filter);
+      console.log(`Filtered movies:`, filtered);
+      setFilteredMovies(filtered);
+    } else {
+      console.log(`No filter selected`);
+      setFilteredMovies(movies);
+    }
+  }, [movies, filter]);
+  
+  // handle logout by resetting user, token, and clearing localStorage
   const handleLogout = () => {
     setUser(null);
     setToken(null);
@@ -112,7 +138,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={handleLogout}/>
+      <NavigationBar user={user} onLoggedOut={handleLogout} />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -136,38 +162,56 @@ export const MainView = () => {
                     <SignupView className="form" />
                   </Col>
                 </>
-              ) : movies.length === 0 ? (
-                <>
-                  <div>The list is empty!</div>
-                </>
               ) : (
                 <>
-                  <Col xs={12} className="mb-1.5"></Col>
-                  {movies.map((movie) => {
-                    return (
+                  <Col xs={12} className="mb-3">
+                    <label className="form-label">Select genre:</label>
+                    <select
+                      className="form-select"
+                      value={filter}
+                      onChange={(e) => setFilter(e.target.value)}
+                    >
+                      <option value="">All genres</option>
+                      <option value="Action">Action</option>
+                      <option value="Comedy">Comedy</option>
+                      <option value="Drama">Drama</option>
+                      <option value="Fantasy">Fantasy</option>
+                      <option value="Horror">Horror</option>
+                      <option value="Romance">Romance</option>
+                      <option value="Thriller">Thriller</option>
+                    </select>
+                  </Col>
+                  {filteredMovies.length === 0 ? (
+                    <Col xs={12}>
+                      <div>The list is empty!</div>
+                    </Col>
+                  ) : (
+                    filteredMovies.map((movie) => (
                       <Col key={movie.id} xs={12} sm={6} md={4} lg={3} className="mb-5">
                         <MovieCard
                           movie={movie}
                           fav={favMovies.includes(movie.id)}
                           onAddToFavorites={(movieId) => addToFav(movieId)}
                           onRemoveFromFavorites={(movieId) => removeFromFav(movieId)}
+                          onfilteredMovies={(movieId) => filteredMovies(movieId)}
                         />
                       </Col>
-                    );
-                  })}
-
+                    ))
+                  )}
                 </>
               )
             }
           />
           <Route
             path="/movies/:movieId"
-            element={<MovieView
-              movies={movies}
-              favoritesMovies={favMovies}
-              addToFavorites={addToFav}
-              removeFromFavorites={removeFromFav}
-           />}
+            element={
+              <MovieView
+                movies={movies}
+                favoritesMovies={favMovies}
+                addToFavorites={addToFav}
+                removeFromFavorites={removeFromFav}
+              />
+            }
           />
           <Route
             path="/users/:UserName"
@@ -180,11 +224,12 @@ export const MainView = () => {
                 removeFromFavorites={removeFromFav}
               />
             }
-            />
+          />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Row>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
-  );
-};
+  ); 
+}
+  
