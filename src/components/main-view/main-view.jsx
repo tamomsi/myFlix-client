@@ -23,13 +23,14 @@ export const MainView = () => {
   const [favMovies, setFavMovies] = useState(user?.FavoriteMovies || []);
   const [filter, setFilter] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [genres, setGenres] = useState([]);
+  const [genre, setGenres] = useState([]);
 
   // fetch movies from the server when the token or filter changes
   useEffect(() => {
     if (!token) return; // don't fetch movies if the user is not logged in
     let url = "https://tamarflix.herokuapp.com/movies";
     if (filter) {
+      console.log(filter);
       url += `?genre=${filter}`;
     }
     fetch(url, {
@@ -64,16 +65,37 @@ export const MainView = () => {
 
   // update the filtered movies list when the movies or filter change
   useEffect(() => {
+    if (!token) return; // don't fetch movies if the user is not logged in
+    let url = "https://tamarflix.herokuapp.com/movies";
     if (filter) {
-      console.log(`Filtering movies by genre: ${filter}`);
-      const filtered = movies.filter(movie => movie.genre.name === filter);
-      console.log(`Filtered movies:`, filtered);
-      setFilteredMovies(filtered);
-    } else {
-      console.log(`No filter selected`);
-      setFilteredMovies(movies);
+      url += `?genre=${filter}`;
     }
-  }, [movies, filter]);
+    fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => response.json())
+      .then((movies) => {
+        const moviesFromApi = movies.map((movie) => ({
+          id: movie._id,
+          title: movie.Title,
+          image: movie.ImagePath,
+          description: movie.Description,
+          genre: movie.Genre.Name,
+          director: movie.Director,
+        }));
+        setMovies(moviesFromApi);
+        if (filter) {
+          const filteredMovies = moviesFromApi.filter(
+            (movie) => movie.genre === filter
+          );
+          setFilteredMovies(filteredMovies);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [token, filter]);
+  
   
   // handle logout by resetting user, token, and clearing localStorage
   const handleLogout = () => {

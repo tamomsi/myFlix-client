@@ -5842,12 +5842,15 @@ const MainView = ()=>{
     const [favMovies, setFavMovies] = (0, _react.useState)(user?.FavoriteMovies || []);
     const [filter, setFilter] = (0, _react.useState)("");
     const [filteredMovies, setFilteredMovies] = (0, _react.useState)([]);
-    const [genres, setGenres] = (0, _react.useState)([]);
+    const [genre, setGenres] = (0, _react.useState)([]);
     // fetch movies from the server when the token or filter changes
     (0, _react.useEffect)(()=>{
         if (!token) return; // don't fetch movies if the user is not logged in
         let url = "https://tamarflix.herokuapp.com/movies";
-        if (filter) url += `?genre=${filter}`;
+        if (filter) {
+            console.log(filter);
+            url += `?genre=${filter}`;
+        }
         fetch(url, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -5881,17 +5884,32 @@ const MainView = ()=>{
     ]);
     // update the filtered movies list when the movies or filter change
     (0, _react.useEffect)(()=>{
-        if (filter) {
-            console.log(`Filtering movies by genre: ${filter}`);
-            const filtered = movies.filter((movie)=>movie.genre.name === filter);
-            console.log(`Filtered movies:`, filtered);
-            setFilteredMovies(filtered);
-        } else {
-            console.log(`No filter selected`);
-            setFilteredMovies(movies);
-        }
+        if (!token) return; // don't fetch movies if the user is not logged in
+        let url = "https://tamarflix.herokuapp.com/movies";
+        if (filter) url += `?genre=${filter}`;
+        fetch(url, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>response.json()).then((movies)=>{
+            const moviesFromApi = movies.map((movie)=>({
+                    id: movie._id,
+                    title: movie.Title,
+                    image: movie.ImagePath,
+                    description: movie.Description,
+                    genre: movie.Genre.Name,
+                    director: movie.Director
+                }));
+            setMovies(moviesFromApi);
+            if (filter) {
+                const filteredMovies = moviesFromApi.filter((movie)=>movie.genre === filter);
+                setFilteredMovies(filteredMovies);
+            }
+        }).catch((error)=>{
+            console.log(error);
+        });
     }, [
-        movies,
+        token,
         filter
     ]);
     // handle logout by resetting user, token, and clearing localStorage
@@ -5957,7 +5975,7 @@ const MainView = ()=>{
                 onLoggedOut: handleLogout
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 141,
+                lineNumber: 163,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -6069,7 +6087,7 @@ const MainView = ()=>{
                             }, void 0, true)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 144,
+                            lineNumber: 166,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6082,7 +6100,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 205,
+                            lineNumber: 227,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6096,7 +6114,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 216,
+                            lineNumber: 238,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6106,33 +6124,33 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 228,
+                            lineNumber: 250,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 143,
+                    lineNumber: 165,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 142,
+                lineNumber: 164,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 231,
+                lineNumber: 253,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 140,
+        lineNumber: 162,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "k8ViM0vIX8HHLGRh5arGNF73fE0=");
+_s(MainView, "A5KipSxc7zuP2ajqvR19JYr04kI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -6191,10 +6209,6 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites , on
         if (filteredMovies) filteredMovies(false);
         else setFilteredMovies(event);
     };
-    const handleGenreFilter = (event)=>{
-        event.preventDefault();
-        onFilteredByGenre(movie.genre.name);
-    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100",
         children: [
@@ -6205,7 +6219,7 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites , on
                 alt: movie.title
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 58,
+                lineNumber: 53,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -6214,14 +6228,14 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites , on
                         children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 65,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: truncatedDescription
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 66,
+                        lineNumber: 61,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -6234,12 +6248,12 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites , on
                                     children: "Open"
                                 }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",
-                                    lineNumber: 69,
+                                    lineNumber: 64,
                                     columnNumber: 13
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 68,
+                                lineNumber: 63,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -6249,25 +6263,25 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites , on
                                 children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 71,
+                                lineNumber: 66,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 67,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 64,
+                lineNumber: 59,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 57,
+        lineNumber: 52,
         columnNumber: 5
     }, undefined);
 };
@@ -6288,7 +6302,7 @@ MovieCard.propTypes = {
         }).isRequired
     }).isRequired,
     onAddToFavorites: (0, _propTypesDefault.default).func.isRequired,
-    onFilteredByGenre: (0, _propTypesDefault.default).func.isRequired
+    genre: (0, _propTypesDefault.default).string.isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieCard");

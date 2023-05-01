@@ -47,11 +47,6 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites,
       setFilteredMovies(event);
     }
   };
-
-  const handleGenreFilter = (event) => {
-    event.preventDefault();
-    onFilteredByGenre(movie.genre.name);
-  };
   
   return (
     <Card className="h-100">
@@ -96,5 +91,5 @@ MovieCard.propTypes = {
     }).isRequired,
   }).isRequired,
   onAddToFavorites: PropTypes.func.isRequired,
-  onFilteredByGenre: PropTypes.func.isRequired,
+  genre: PropTypes.string.isRequired,
 };
