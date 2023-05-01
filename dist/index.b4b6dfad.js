@@ -6049,16 +6049,8 @@ const MainView = ()=>{
                                                         children: "Fantasy"
                                                     }, void 0, false, void 0, void 0),
                                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
-                                                        value: "Horror",
-                                                        children: "Horror"
-                                                    }, void 0, false, void 0, void 0),
-                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
                                                         value: "Romance",
                                                         children: "Romance"
-                                                    }, void 0, false, void 0, void 0),
-                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
-                                                        value: "Thriller",
-                                                        children: "Thriller"
                                                     }, void 0, false, void 0, void 0)
                                                 ]
                                             }, void 0, true, void 0, void 0)
@@ -6100,7 +6092,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 227,
+                            lineNumber: 225,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6114,7 +6106,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 238,
+                            lineNumber: 236,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6124,7 +6116,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 250,
+                            lineNumber: 248,
                             columnNumber: 11
                         }, undefined)
                     ]
@@ -6140,7 +6132,7 @@ const MainView = ()=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 253,
+                lineNumber: 251,
                 columnNumber: 7
             }, undefined)
         ]

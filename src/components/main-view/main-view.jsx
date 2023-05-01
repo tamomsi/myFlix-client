@@ -198,9 +198,7 @@ export const MainView = () => {
                       <option value="Comedy">Comedy</option>
                       <option value="Drama">Drama</option>
                       <option value="Fantasy">Fantasy</option>
-                      <option value="Horror">Horror</option>
                       <option value="Romance">Romance</option>
-                      <option value="Thriller">Thriller</option>
                     </select>
                   </Col>
                   {filteredMovies.length === 0 ? (
