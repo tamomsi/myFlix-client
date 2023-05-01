@@ -29,7 +29,7 @@ export const MainView = () => {
   useEffect(() => {
     if (!token) return; // don't fetch movies if the user is not logged in
     let url = "https://tamarflix.herokuapp.com/movies";
-    if (filter) {
+    if (filter !== "") {
       url += `?genre=${filter}`;
     }
     fetch(url, {
@@ -46,17 +46,20 @@ export const MainView = () => {
           director: movie.Director,
         }));
         setMovies(moviesFromApi);
-        if (filter) {
+        if (filter !== "") {
           const filteredMovies = moviesFromApi.filter(
             (movie) => movie.genre === filter
           );
           setFilteredMovies(filteredMovies);
+        } else {
+          setFilteredMovies(moviesFromApi);
         }
       })
       .catch((error) => {
         console.log(error);
       });
   }, [token, filter]);
+
 
   // update the favorite movies list when the user changes
   useEffect(() => {
