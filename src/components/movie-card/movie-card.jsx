@@ -55,7 +55,7 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
           </Link>
           <Button
             className="favorite-button"
-            variant={isFavorite ? 'secondary' : 'outline-primary'}
+            variant={isFavorite ? 'primary' : 'outline-primary'}
             onClick={!isFavorite ? handleFavoriteClick : handleRemoveFromFavorites} //use handleFavoriteClick for favorite button click
           >
             {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
