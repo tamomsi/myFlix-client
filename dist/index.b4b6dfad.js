@@ -5843,45 +5843,6 @@ const MainView = ()=>{
     const [filter, setFilter] = (0, _react.useState)("");
     const [filteredMovies, setFilteredMovies] = (0, _react.useState)([]);
     const [genre, setGenres] = (0, _react.useState)([]);
-    // fetch movies from the server when the token or filter changes
-    (0, _react.useEffect)(()=>{
-        if (!token) return; // don't fetch movies if the user is not logged in
-        let url = "https://tamarflix.herokuapp.com/movies";
-        if (filter) {
-            console.log(filter);
-            url += `?genre=${filter}`;
-        }
-        fetch(url, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>response.json()).then((movies)=>{
-            const moviesFromApi = movies.map((movie)=>({
-                    id: movie._id,
-                    title: movie.Title,
-                    image: movie.ImagePath,
-                    description: movie.Description,
-                    genre: movie.Genre,
-                    director: movie.Director
-                }));
-            setMovies(moviesFromApi);
-        }).catch((error)=>{
-            console.log(error);
-        });
-    }, [
-        token,
-        filter
-    ]);
-    // update the favorite movies list when the user changes
-    (0, _react.useEffect)(()=>{
-        if (!user) {
-            setFavMovies([]);
-            return;
-        }
-        setFavMovies(user.FavoriteMovies || []);
-    }, [
-        user
-    ]);
     // update the filtered movies list when the movies or filter change
     (0, _react.useEffect)(()=>{
         if (!token) return; // don't fetch movies if the user is not logged in
@@ -5911,6 +5872,16 @@ const MainView = ()=>{
     }, [
         token,
         filter
+    ]);
+    // update the favorite movies list when the user changes
+    (0, _react.useEffect)(()=>{
+        if (!user) {
+            setFavMovies([]);
+            return;
+        }
+        setFavMovies(user.FavoriteMovies || []);
+    }, [
+        user
     ]);
     // handle logout by resetting user, token, and clearing localStorage
     const handleLogout = ()=>{
@@ -5975,7 +5946,7 @@ const MainView = ()=>{
                 onLoggedOut: handleLogout
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 163,
+                lineNumber: 135,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -6079,7 +6050,7 @@ const MainView = ()=>{
                             }, void 0, true)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 166,
+                            lineNumber: 138,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6092,7 +6063,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 225,
+                            lineNumber: 197,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6106,7 +6077,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 236,
+                            lineNumber: 208,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -6116,33 +6087,33 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 248,
+                            lineNumber: 220,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 165,
+                    lineNumber: 137,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 164,
+                lineNumber: 136,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 251,
+                lineNumber: 223,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 162,
+        lineNumber: 134,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "A5KipSxc7zuP2ajqvR19JYr04kI=");
+_s(MainView, "PQpFL+tNCGc69jNXPrygWzw7MmI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -6285,8 +6256,8 @@ MovieCard.propTypes = {
         description: (0, _propTypesDefault.default).string.isRequired,
         image: (0, _propTypesDefault.default).string.isRequired,
         genre: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string,
-            description: (0, _propTypesDefault.default).string
+            name: (0, _propTypesDefault.default).string.isRequired,
+            description: (0, _propTypesDefault.default).string.isRequired
         }),
         director: (0, _propTypesDefault.default).shape({
             Name: (0, _propTypesDefault.default).string.isRequired,

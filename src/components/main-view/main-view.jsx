@@ -25,44 +25,6 @@ export const MainView = () => {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [genre, setGenres] = useState([]);
 
-  // fetch movies from the server when the token or filter changes
-  useEffect(() => {
-    if (!token) return; // don't fetch movies if the user is not logged in
-    let url = "https://tamarflix.herokuapp.com/movies";
-    if (filter) {
-      console.log(filter);
-      url += `?genre=${filter}`;
-    }
-    fetch(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => response.json())
-      .then((movies) => {
-        const moviesFromApi = movies.map((movie) => ({
-          id: movie._id,
-          title: movie.Title,
-          image: movie.ImagePath,
-          description: movie.Description,
-          genre: movie.Genre,
-          director: movie.Director,
-        }));
-        setMovies(moviesFromApi);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [token, filter]);
-
-  // update the favorite movies list when the user changes
-  useEffect(() => {
-    if (!user) {
-      setFavMovies([]);
-      return;
-    }
-
-    setFavMovies(user.FavoriteMovies || []);
-  }, [user]);
-
   // update the filtered movies list when the movies or filter change
   useEffect(() => {
     if (!token) return; // don't fetch movies if the user is not logged in
@@ -95,6 +57,16 @@ export const MainView = () => {
         console.log(error);
       });
   }, [token, filter]);
+
+  // update the favorite movies list when the user changes
+  useEffect(() => {
+    if (!user) {
+      setFavMovies([]);
+      return;
+    }
+
+    setFavMovies(user.FavoriteMovies || []);
+  }, [user]);
   
   
   // handle logout by resetting user, token, and clearing localStorage
@@ -252,4 +224,3 @@ export const MainView = () => {
     </BrowserRouter>
   ); 
 }
-  
