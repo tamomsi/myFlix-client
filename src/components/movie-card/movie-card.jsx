@@ -37,15 +37,6 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
       handleAddToFavorites(event);
     }
   };
-
-  const setFilteredMovies = (event) => {
-    event.preventDefault();
-    if (filteredMovies) {
-      filteredMovies(false);
-    } else {
-      setFilteredMovies(event);
-    }
-  };
   
   return (
     <Card className="h-100">
@@ -60,7 +51,7 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
         <Card.Text>{truncatedDescription}</Card.Text>
         <div className="button-group">
           <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-            <Button variant="link">Open</Button>
+            <Button variant="link" aria-label="Open movie details">Open</Button>
           </Link>
           <Button
             className="favorite-button"
