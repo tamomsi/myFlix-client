@@ -6033,7 +6033,7 @@ const MainView = ()=>{
                                                         children: "All genres"
                                                     }, void 0, false, void 0, void 0),
                                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
-                                                        value: "Action",
+                                                        value: "Family",
                                                         children: "Action"
                                                     }, void 0, false, void 0, void 0),
                                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
