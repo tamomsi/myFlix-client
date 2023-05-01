@@ -5992,6 +5992,10 @@ const MainView = ()=>{
                                         children: [
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                                                 className: "form-label",
+                                                style: {
+                                                    color: "#194545",
+                                                    fontWeight: "bold"
+                                                },
                                                 children: "Select genre:"
                                             }, void 0, false, void 0, void 0),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("select", {
@@ -6217,7 +6221,7 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites  })=
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                 className: "favorite-button",
-                                variant: isFavorite ? "secondary" : "outline-primary",
+                                variant: isFavorite ? "primary" : "outline-primary",
                                 onClick: !isFavorite ? handleFavoriteClick : handleRemoveFromFavorites,
                                 children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
                             }, void 0, false, {

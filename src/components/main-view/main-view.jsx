@@ -161,7 +161,7 @@ export const MainView = () => {
               ) : (
                 <>
                   <Col xs={12} className="mb-3">
-                    <label className="form-label">Select genre:</label>
+                    <label className="form-label" style={{ color: '#194545', fontWeight: 'bold' }}>Select genre:</label>
                     <select
                       className="form-select"
                       value={filter}
