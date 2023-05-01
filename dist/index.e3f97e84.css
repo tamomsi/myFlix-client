@@ -7,6 +7,7 @@
 .favorite-button {
   color: #7fff00;
   background-color: #2f4f4f;
+  transition: background-color .2s;
 }
 
 .favorite-button:hover {

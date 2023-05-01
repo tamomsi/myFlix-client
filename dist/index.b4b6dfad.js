@@ -47407,7 +47407,7 @@ const ProfileView = ({ user , movies , favoritesMovies , addToFavorites , remove
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 style: {
-                    color: "DarkSlateGray"
+                    color: "#194545"
                 },
                 children: "Profile"
             }, void 0, false, {
@@ -47515,7 +47515,7 @@ const UserInfo = ({ user  })=>{
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
                     className: "profile-title",
                     style: {
-                        color: "DarkSlateGray"
+                        color: "#194545"
                     },
                     children: "User Info"
                 }, void 0, false, {
