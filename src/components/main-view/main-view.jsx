@@ -71,7 +71,6 @@ export const MainView = () => {
     setFavMovies(user.FavoriteMovies || []);
   }, [user]);
   
-  
   // handle logout by resetting user, token, and clearing localStorage
   const handleLogout = () => {
     setUser(null);
