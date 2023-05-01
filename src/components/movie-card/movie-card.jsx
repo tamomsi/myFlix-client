@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
-export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites, onfilteredMovies  }) => {
+export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites }) => {
   const maxDescriptionLength = 100;
   const truncatedDescription =
     movie.description.length > maxDescriptionLength
@@ -16,7 +16,6 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites,
       useEffect(() => {
         setIsFavorite(fav);
       }, [fav]);
-
 
   const handleAddToFavorites = (event) => {
     event.preventDefault();
