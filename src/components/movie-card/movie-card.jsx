@@ -81,5 +81,4 @@ MovieCard.propTypes = {
     }).isRequired,
   }).isRequired,
   onAddToFavorites: PropTypes.func.isRequired,
-  genre: PropTypes.string.isRequired,
 };

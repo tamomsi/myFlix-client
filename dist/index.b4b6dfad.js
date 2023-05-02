@@ -27611,8 +27611,7 @@ MovieCard.propTypes = {
             Bio: (0, _propTypesDefault.default).string.isRequired
         }).isRequired
     }).isRequired,
-    onAddToFavorites: (0, _propTypesDefault.default).func.isRequired,
-    genre: (0, _propTypesDefault.default).string.isRequired
+    onAddToFavorites: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieCard");
