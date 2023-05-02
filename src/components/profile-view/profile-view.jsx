@@ -41,7 +41,7 @@ export const ProfileView = ({user, movies, favoritesMovies, addToFavorites, remo
 
   return (
     <>
-      <h1 style={{ color: 'DarkSlateGray' }}>Profile</h1>
+      <h1 style={{ color: '#194545' }}>Profile</h1>
       <Container>
         <Row>
           <Col md={4}>

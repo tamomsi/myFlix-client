@@ -1,8 +1,13 @@
-import React, { useState, } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 export default function UpdateUser({ user, handleSubmit }) {
-  const [updatedUser, setUpdatedUser] = useState(user);
+  const [updatedUser, setUpdatedUser] = useState({
+    username: "",
+    password: "",
+    email: "",
+    dateOfBirth: "",
+  });
 
   const handleUpdate = (e) => {
     const { name, value } = e.target;
@@ -26,7 +31,8 @@ export default function UpdateUser({ user, handleSubmit }) {
         <Form.Control
           type="text"
           name="username"
-          value={updatedUser.UserName}
+          placeholder={user.username}
+          value={updatedUser.username}
           onChange={(e) => handleUpdate(e)}
         />
       </Form.Group>
@@ -35,7 +41,8 @@ export default function UpdateUser({ user, handleSubmit }) {
         <Form.Control
           type="password"
           name="password"
-          value={updatedUser.Password}
+          placeholder="********"
+          value={updatedUser.password}
           onChange={(e) => handleUpdate(e)}
         />
       </Form.Group>
@@ -44,6 +51,7 @@ export default function UpdateUser({ user, handleSubmit }) {
         <Form.Control
           type="email"
           name="email"
+          placeholder={user.email}
           value={updatedUser.email}
           onChange={(e) => handleUpdate(e)}
         />
@@ -53,7 +61,8 @@ export default function UpdateUser({ user, handleSubmit }) {
         <Form.Control
           type="date"
           name="dateOfBirth"
-          value={formatDate(updatedUser.Birthday)}
+          placeholder={user.dateOfBirth}
+          value={updatedUser.dateOfBirth}
           onChange={(e) => handleUpdate(e)}
         />
       </Form.Group>

@@ -6,7 +6,7 @@ export const UserInfo = ({ user }) => {
   return (
     <Card style={{backgroundColor: 'DarkGray'}}>
       <Card.Body>
-        <Card.Title className="profile-title" style={{color: 'DarkSlateGray'}}>User Info</Card.Title>
+        <Card.Title className="profile-title" style={{color: '#194545'}}>User Info</Card.Title>
         <Card.Text className="profile-text">
           <span className="label">Username: </span>
           <span className="value">{user.UserName}</span>

@@ -36,23 +36,28 @@ export const MovieView = ({
             <Card.Title>{movie.title}</Card.Title>
             <Card.Text>{movie.description}</Card.Text>
             <Card.Text>Director: {movie.director.Name}</Card.Text>
-            <Card.Text>
-              Biography of the Director: {movie.director.Bio}
-            </Card.Text>
+            <Card.Text>Biography of the Director: {movie.director.Bio}</Card.Text>
             <Card.Text>Birth Year: {movie.director.Birth}</Card.Text>
             <Card.Text>Death Year: {movie.director.Death}</Card.Text>
-            <Card.Text>Genre: {movie.genre.Name}</Card.Text>
-            <Card.Text>Genre Description: {movie.genre.Description}</Card.Text>
-            <Button
-              className="favorite-button"
-              variant={isFavorite ? "primary" : "outline-primary"}
-              onClick={handleFavoriteClick}
-            >
-              {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-            </Button>
-            <Link to={`/`}>
-              <Button className="back-button" variant="primary">Back</Button>
-            </Link>
+            {movie.genre && (
+              <>
+                <Card.Text>Genre: {movie.genre}</Card.Text>
+                <Card.Text>Genre Description: {movie.genre.description}</Card.Text>
+              </>
+            )}
+
+            <div style={{ display: "flex" }}>
+              <Button
+                className="favorite-button"
+                variant={isFavorite ? "primary" : "outline-primary"}
+                onClick={handleFavoriteClick}
+              >
+                {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+              </Button>
+              <Link to={`/`}>
+                <Button className="back-button" variant="primary">Back</Button>
+              </Link>
+            </div>
           </Card.Body>
         </Card>
       ) : null}
