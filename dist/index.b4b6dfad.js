@@ -27356,7 +27356,7 @@ const MainView = ()=>{
                                                     }, void 0, false, void 0, void 0),
                                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
                                                         value: "Family",
-                                                        children: "Action"
+                                                        children: "Family"
                                                     }, void 0, false, void 0, void 0),
                                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
                                                         value: "Comedy",
