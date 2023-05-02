@@ -60,7 +60,6 @@ export const MainView = () => {
       });
   }, [token, filter]);
 
-
   // update the favorite movies list when the user changes
   useEffect(() => {
     if (!user) {
