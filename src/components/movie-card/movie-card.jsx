@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './movie-card.scss';
 
-export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites  }) => {
+export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites }) => {
   const maxDescriptionLength = 100;
   const truncatedDescription =
     movie.description.length > maxDescriptionLength
@@ -16,7 +16,6 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
       useEffect(() => {
         setIsFavorite(fav);
       }, [fav]);
-
 
   const handleAddToFavorites = (event) => {
     event.preventDefault();
@@ -38,7 +37,7 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
       handleAddToFavorites(event);
     }
   };
-
+  
   return (
     <Card className="h-100">
       <Card.Img
@@ -52,11 +51,11 @@ export const MovieCard = ({ fav, movie, onAddToFavorites, onRemoveFromFavorites 
         <Card.Text>{truncatedDescription}</Card.Text>
         <div className="button-group">
           <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-            <Button variant="link">Open</Button>
+            <Button variant="link" aria-label="Open movie details">Open</Button>
           </Link>
           <Button
             className="favorite-button"
-            variant={isFavorite ? 'secondary' : 'outline-primary'}
+            variant={isFavorite ? 'primary' : 'outline-primary'}
             onClick={!isFavorite ? handleFavoriteClick : handleRemoveFromFavorites} //use handleFavoriteClick for favorite button click
           >
             {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
@@ -73,13 +72,14 @@ MovieCard.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     genre: PropTypes.shape({
-      name: PropTypes.string,
-      description: PropTypes.string,
-    }),
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    }).isRequired,
     director: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Bio: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   onAddToFavorites: PropTypes.func.isRequired,
+  genre: PropTypes.string.isRequired,
 };
