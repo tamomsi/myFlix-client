@@ -39,12 +39,12 @@ export const MovieView = ({
             <Card.Text>Biography of the Director: {movie.director.Bio}</Card.Text>
             <Card.Text>Birth Year: {movie.director.Birth}</Card.Text>
             <Card.Text>Death Year: {movie.director.Death}</Card.Text>
-                <Card.Text>Genre: {movie.genre}</Card.Text>
-                <Card.Text>Genre Description: {movie.genre.Description}</Card.Text>
+            <Card.Text>Genre: {movie.genre}</Card.Text>
+            <Card.Text>Genre Description: {movie.genre.Description} </Card.Text>
             <div style={{ display: "flex" }}>
               <Button
                 className="favorite-button"
-                variant={isFavorite ? "primary" : "outline-primary"}
+                variant={isFavorite ? "primary" : "primary"}
                 onClick={handleFavoriteClick}
               >
                 {isFavorite ? "Remove from Favorites" : "Add to Favorites"}

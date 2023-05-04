@@ -27568,7 +27568,7 @@ const MovieCard = ({ fav , movie , onAddToFavorites , onRemoveFromFavorites  })=
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                 className: "favorite-button",
-                                variant: isFavorite ? "primary" : "outline-primary",
+                                variant: isFavorite ? "primary" : "primary",
                                 onClick: !isFavorite ? handleFavoriteClick : handleRemoveFromFavorites,
                                 children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
                             }, void 0, false, {
@@ -46731,17 +46731,18 @@ const MovieView = ({ movies , addToFavorites , removeFromFavorites , favoritesMo
                         }, void 0, true, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 42,
-                            columnNumber: 17
+                            columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                             children: [
                                 "Genre Description: ",
-                                movie.genre.Description
+                                movie.genre.Description,
+                                " "
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movie-view/movie-view.jsx",
                             lineNumber: 43,
-                            columnNumber: 17
+                            columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             style: {
@@ -46750,7 +46751,7 @@ const MovieView = ({ movies , addToFavorites , removeFromFavorites , favoritesMo
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                     className: "favorite-button",
-                                    variant: isFavorite ? "primary" : "outline-primary",
+                                    variant: isFavorite ? "primary" : "primary",
                                     onClick: handleFavoriteClick,
                                     children: isFavorite ? "Remove from Favorites" : "Add to Favorites"
                                 }, void 0, false, {
