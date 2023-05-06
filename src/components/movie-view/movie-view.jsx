@@ -40,7 +40,7 @@ export const MovieView = ({
             <Card.Text>Birth Year: {movie.director.Birth}</Card.Text>
             <Card.Text>Death Year: {movie.director.Death}</Card.Text>
             <Card.Text>Genre: {movie.genre}</Card.Text>
-            <Card.Text>Genre Description: {movie.genre.Description} </Card.Text>
+            <Card.Text>Genre Description: {movie.genreDescription} </Card.Text>
             <div style={{ display: "flex" }}>
               <Button
                 className="favorite-button"

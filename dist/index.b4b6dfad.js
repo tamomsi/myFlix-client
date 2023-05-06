@@ -27206,6 +27206,7 @@ const MainView = ()=>{
                     image: movie.ImagePath,
                     description: movie.Description,
                     genre: movie.Genre.Name,
+                    genreDescription: movie.Genre.Description,
                     director: movie.Director
                 }));
             setMovies(moviesFromApi);
@@ -27293,7 +27294,7 @@ const MainView = ()=>{
                 onLoggedOut: handleLogout
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 136,
+                lineNumber: 137,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27401,7 +27402,7 @@ const MainView = ()=>{
                             }, void 0, true)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 139,
+                            lineNumber: 140,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27414,7 +27415,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 198,
+                            lineNumber: 199,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27428,7 +27429,7 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 209,
+                            lineNumber: 210,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27438,29 +27439,29 @@ const MainView = ()=>{
                             }, void 0, false, void 0, void 0)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 221,
+                            lineNumber: 222,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 138,
+                    lineNumber: 139,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 137,
+                lineNumber: 138,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 224,
+                lineNumber: 225,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 135,
+        lineNumber: 136,
         columnNumber: 5
     }, undefined);
 };
@@ -46736,7 +46737,7 @@ const MovieView = ({ movies , addToFavorites , removeFromFavorites , favoritesMo
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                             children: [
                                 "Genre Description: ",
-                                movie.genre.Description,
+                                movie.genreDescription,
                                 " "
                             ]
                         }, void 0, true, {
